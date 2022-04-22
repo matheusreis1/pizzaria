@@ -37,6 +37,10 @@ public class Cliente {
         return this.pedidos;
     }
 
+    public String getNome() {
+        return this.nome;
+    }
+
     public String getSobrenome() {
         return sobrenome;
     }
