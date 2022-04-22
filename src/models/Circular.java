@@ -1,5 +1,6 @@
 package models;
 
+import enums.FormaPizza;
 import errors.InvalidSizeInput;
 
 /**
@@ -13,7 +14,7 @@ public class Circular extends Forma {
     private double raio;
 
     public Circular(double raio) throws InvalidSizeInput {
-        super("circular");
+        super(FormaPizza.CIRCULAR);
         this.setRaio(raio);
     }
 

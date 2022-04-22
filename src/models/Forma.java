@@ -1,18 +1,20 @@
 package models;
 
+import enums.FormaPizza;
+
 /**
  *
  * @author user
  */
 public abstract class Forma {
 
-    private String nome;
+    private FormaPizza nome;
 
-    public Forma(String nome) {
+    public Forma(FormaPizza nome) {
         this.nome = nome;
     }
 
-    public String getNome() {
+    public FormaPizza getNome() {
         return this.nome;
     }
 

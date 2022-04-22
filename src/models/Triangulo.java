@@ -1,5 +1,6 @@
 package models;
 
+import enums.FormaPizza;
 import errors.InvalidSizeInput;
 
 /**
@@ -13,7 +14,7 @@ public class Triangulo extends Forma {
     private double lado;
 
     public Triangulo(double lado) throws InvalidSizeInput {
-        super("triangulo");
+        super(FormaPizza.TRIANGULO);
         this.setLado(lado);
     }
 
