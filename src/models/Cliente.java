@@ -13,13 +13,6 @@ public class Cliente {
     private String telefone;
     private ArrayList<Pedido> pedidos;
 
-    public Cliente(String nome, String sobrenome, String telefone, ArrayList<Pedido> pedidos) {
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.telefone = telefone;
-        this.pedidos = pedidos;
-    }
-
     public Pedido getPedidoAtivo() {
         Pedido pedidoAtivo = null;
 
@@ -42,6 +35,24 @@ public class Cliente {
 
     public String getTelefone() {
         return telefone;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public void addPedido(Pedido pedido) {
+        if (getPedidoAtivo() == null) {
+            this.pedidos.add(pedido);
+        }
     }
 
 }
