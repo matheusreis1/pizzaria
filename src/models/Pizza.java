@@ -1,5 +1,6 @@
 package models;
 
+import errors.MaximumFlavorSize;
 import java.util.ArrayList;
 
 /**
@@ -8,20 +9,45 @@ import java.util.ArrayList;
  */
 class Pizza {
 
-    private final Forma forma;
-    private final ArrayList<Sabor> sabores;
-    private final double preco;
-    private final double area;
+    private static final int MAXIMUM_SABOR_SIZE = 2;
+    private Forma forma;
+    private ArrayList<Sabor> sabores;
+    private double area;
 
-    public Pizza(Forma forma, ArrayList<Sabor> sabores, double preco, double area) {
+    public Pizza(Forma forma, ArrayList<Sabor> sabores, double area) throws MaximumFlavorSize {
         this.forma = forma;
-        this.sabores = sabores;
-        this.preco = preco;
+        this.setSabores(sabores);
         this.area = area;
     }
 
+    public void addSabor(Sabor sabor) throws MaximumFlavorSize {
+        if (this.sabores.size() == Pizza.MAXIMUM_SABOR_SIZE) {
+            throw new MaximumFlavorSize(Pizza.MAXIMUM_SABOR_SIZE);
+        }
+        this.sabores.add(sabor);
+    }
+
+    private void setSabores(ArrayList<Sabor> sabores) throws MaximumFlavorSize {
+        for (Sabor sabor : sabores) {
+            this.addSabor(sabor);
+        }
+    }
+
     public double getPreco() {
-        return 0.0;
+        double preco = 0;
+        if (this.sabores.isEmpty()) {
+            return preco;
+        }
+        double quantidadeSaboresDiferentes = 1;
+        String saborAntigo = this.sabores.get(0).getTipo();
+        for (Sabor sabor : sabores) {
+            if (!saborAntigo.equals(sabor.getTipo())) {
+                quantidadeSaboresDiferentes++;
+            }
+            preco += sabor.getPreco();
+        }
+        double precoTotal = preco / quantidadeSaboresDiferentes;
+        return precoTotal;
     }
 
 }

@@ -22,4 +22,6 @@ public abstract class Sabor {
 
     public abstract double getPreco();
 
+    public abstract String getTipo();
+
 }
