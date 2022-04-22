@@ -1,6 +1,6 @@
 package models;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -9,9 +9,21 @@ import java.util.List;
 class Pedido {
 
     private double preco;
-    private List<Pizza> pizzas;
+    private ArrayList<Pizza> pizzas;
     private StatusPedido status;
     private String identificador;
     private Cliente cliente;
+
+    public Pedido(double preco, ArrayList<Pizza> pizzas, StatusPedido status, String identificador, Cliente cliente) {
+        this.preco = preco;
+        this.pizzas = pizzas;
+        this.status = status;
+        this.identificador = identificador;
+        this.cliente = cliente;
+    }
+
+    public StatusPedido getStatus() {
+        return status;
+    }
 
 }

@@ -1,6 +1,6 @@
 package models;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -9,11 +9,11 @@ import java.util.List;
 class Pizza {
 
     private final Forma forma;
-    private final List<Sabor> sabores;
+    private final ArrayList<Sabor> sabores;
     private final double preco;
     private final double area;
 
-    public Pizza(Forma forma, List<Sabor> sabores, double preco, double area) {
+    public Pizza(Forma forma, ArrayList<Sabor> sabores, double preco, double area) {
         this.forma = forma;
         this.sabores = sabores;
         this.preco = preco;
