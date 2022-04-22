@@ -13,6 +13,7 @@ public class Quadrado extends Forma {
     private double lado;
 
     public Quadrado(double lado) throws InvalidSizeInput {
+        super("quadrado");
         this.setLado(lado);
     }
 
@@ -23,7 +24,7 @@ public class Quadrado extends Forma {
 
     public void setLado(double lado) throws InvalidSizeInput {
         if (lado < MINIMUM_SIZE || lado > MAXIMUM_SIZE) {
-            throw new InvalidSizeInput(this.getClass().getName(), MINIMUM_SIZE, MAXIMUM_SIZE);
+            throw new InvalidSizeInput("quadrado", MINIMUM_SIZE, MAXIMUM_SIZE);
         }
         this.lado = lado;
     }

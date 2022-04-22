@@ -13,6 +13,7 @@ public class Circular extends Forma {
     private double raio;
 
     public Circular(double raio) throws InvalidSizeInput {
+        super("circular");
         this.setRaio(raio);
     }
 

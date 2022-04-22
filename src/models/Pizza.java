@@ -8,17 +8,19 @@ import java.util.ArrayList;
  *
  * @author user
  */
-class Pizza {
+public class Pizza {
 
     private static final int MAXIMUM_SABOR_SIZE = 2;
     private Forma forma;
     private ArrayList<Sabor> sabores;
     private double area;
 
-    public Pizza(Forma forma, ArrayList<Sabor> sabores, double area) throws MaximumFlavorSize {
+    public Pizza() {
+        this.sabores = new ArrayList<>();
+    }
+
+    public void setForma(Forma forma) {
         this.forma = forma;
-        this.setSabores(sabores);
-        this.area = area;
     }
 
     public void addSabor(Sabor sabor) throws MaximumFlavorSize {

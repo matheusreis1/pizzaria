@@ -8,7 +8,7 @@ import java.util.UUID;
  *
  * @author user
  */
-class Pedido {
+public class Pedido {
 
     private ArrayList<Pizza> pizzas;
     private StatusPedido status;
@@ -17,6 +17,8 @@ class Pedido {
 
     public Pedido(Cliente cliente) {
         this.identificador = UUID.randomUUID().toString();
+        this.pizzas = new ArrayList<>();
+        this.status = StatusPedido.ABERTO;
     }
 
     public double getPreco() {

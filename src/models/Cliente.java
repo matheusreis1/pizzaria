@@ -14,8 +14,15 @@ public class Cliente {
     private String telefone;
     private ArrayList<Pedido> pedidos;
 
+    public Cliente() {
+        this.pedidos = new ArrayList<>();
+    }
+
     public Pedido getPedidoAtivo() {
         Pedido pedidoAtivo = null;
+        if (this.pedidos.isEmpty()) {
+            return pedidoAtivo;
+        }
 
         for (Pedido pedido : pedidos) {
             if (pedido.getStatus() == StatusPedido.ABERTO) {

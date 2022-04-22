@@ -13,6 +13,7 @@ public class Triangulo extends Forma {
     private double lado;
 
     public Triangulo(double lado) throws InvalidSizeInput {
+        super("triangulo");
         this.setLado(lado);
     }
 
