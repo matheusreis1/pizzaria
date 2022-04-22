@@ -10,7 +10,7 @@ class Pedido {
 
     private double preco;
     private List<Pizza> pizzas;
-    private String status;
+    private StatusPedido status;
     private String identificador;
     private Cliente cliente;
 
