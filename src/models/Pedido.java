@@ -9,7 +9,6 @@ import java.util.UUID;
  */
 class Pedido {
 
-    private double preco;
     private ArrayList<Pizza> pizzas;
     private StatusPedido status;
     private String identificador;
@@ -19,16 +18,22 @@ class Pedido {
         this.identificador = UUID.randomUUID().toString();
     }
 
+    public double getPreco() {
+        double preco = 0;
+
+        for (Pizza pizza : pizzas) {
+            preco += pizza.getPreco();
+        }
+
+        return preco;
+    }
+
     public StatusPedido getStatus() {
         return status;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
-
-    public void setPizzas(ArrayList<Pizza> pizzas) {
-        this.pizzas = pizzas;
+    public void addPizza(Pizza pizza) {
+        this.pizzas.add(pizza);
     }
 
     public void setStatus(StatusPedido status) {
