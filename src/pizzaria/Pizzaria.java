@@ -4,12 +4,12 @@ import errors.InvalidSizeInput;
 import errors.MaximumFlavorSize;
 import java.util.ArrayList;
 import models.Cliente;
-import models.Forma;
+import models.formas.Forma;
 import models.Pedido;
 import models.Pizza;
-import models.Quadrado;
-import models.Sabor;
-import models.Simples;
+import models.formas.Quadrado;
+import models.sabores.Sabor;
+import models.sabores.Simples;
 
 /**
  *

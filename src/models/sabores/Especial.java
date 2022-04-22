@@ -1,5 +1,6 @@
-package models;
+package models.sabores;
 
+import models.sabores.Sabor;
 import enums.TipoPizza;
 import java.util.ArrayList;
 

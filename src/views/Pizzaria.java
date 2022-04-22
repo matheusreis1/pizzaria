@@ -204,7 +204,7 @@ public class Pizzaria extends javax.swing.JFrame {
             .addGap(0, 448, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Pedidos", jPanel2);
+        jTabbedPane1.addTab("Sabores", jPanel2);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -217,7 +217,7 @@ public class Pizzaria extends javax.swing.JFrame {
             .addGap(0, 448, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Sabores", jPanel3);
+        jTabbedPane1.addTab("Pedidos", jPanel3);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);

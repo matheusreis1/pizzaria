@@ -1,5 +1,6 @@
-package models;
+package models.formas;
 
+import models.formas.Forma;
 import enums.FormaPizza;
 import errors.InvalidSizeInput;
 
