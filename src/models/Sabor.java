@@ -1,5 +1,6 @@
 package models;
 
+import enums.TipoPizza;
 import java.util.ArrayList;
 
 /**
@@ -8,23 +9,27 @@ import java.util.ArrayList;
  */
 public abstract class Sabor {
 
-    private final double preco;
+    private double preco;
     private final String nome;
     private final ArrayList<String> ingredientes;
-    private final String tipo;
+    private final TipoPizza tipo;
 
-    public Sabor(double preco, String nome, ArrayList<String> ingredientes, String tipo) {
+    public Sabor(double preco, String nome, ArrayList<String> ingredientes, TipoPizza tipo) {
         this.preco = preco;
         this.nome = nome;
         this.ingredientes = ingredientes;
         this.tipo = tipo;
     }
 
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
     public double getPreco() {
         return this.preco;
     }
 
-    public String getTipo() {
+    public TipoPizza getTipo() {
         return this.tipo;
     }
 

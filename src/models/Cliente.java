@@ -1,5 +1,6 @@
 package models;
 
+import enums.StatusPedido;
 import java.util.ArrayList;
 
 /**

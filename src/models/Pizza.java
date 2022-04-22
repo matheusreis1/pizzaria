@@ -1,5 +1,6 @@
 package models;
 
+import enums.TipoPizza;
 import errors.MaximumFlavorSize;
 import java.util.ArrayList;
 
@@ -39,7 +40,7 @@ class Pizza {
             return preco;
         }
         double quantidadeSaboresDiferentes = 1;
-        String saborAntigo = this.sabores.get(0).getTipo();
+        TipoPizza saborAntigo = this.sabores.get(0).getTipo();
         for (Sabor sabor : sabores) {
             if (!saborAntigo.equals(sabor.getTipo())) {
                 quantidadeSaboresDiferentes++;

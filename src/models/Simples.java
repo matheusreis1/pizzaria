@@ -1,5 +1,6 @@
 package models;
 
+import enums.TipoPizza;
 import java.util.ArrayList;
 
 /**
@@ -9,10 +10,9 @@ import java.util.ArrayList;
 public class Simples extends Sabor {
 
     private static final double PRECO = 30.0;
-    private static final String TIPO = "simples";
 
     public Simples(String nome, ArrayList<String> ingredientes) {
-        super(PRECO, nome, ingredientes, TIPO);
+        super(PRECO, nome, ingredientes, TipoPizza.SIMPLES);
     }
 
 }
