@@ -8,10 +8,10 @@ import java.util.ArrayList;
  */
 public abstract class Sabor {
 
-    protected final double preco;
-    protected final String nome;
-    protected final ArrayList<String> ingredientes;
-    protected final String tipo;
+    private final double preco;
+    private final String nome;
+    private final ArrayList<String> ingredientes;
+    private final String tipo;
 
     public Sabor(double preco, String nome, ArrayList<String> ingredientes, String tipo) {
         this.preco = preco;
