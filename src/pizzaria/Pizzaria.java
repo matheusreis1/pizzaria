@@ -4,12 +4,13 @@ import errors.InvalidSizeInput;
 import errors.MaximumFlavorSize;
 import java.util.ArrayList;
 import models.Cliente;
-import models.formas.Forma;
 import models.Pedido;
 import models.Pizza;
+import models.formas.Forma;
 import models.formas.Quadrado;
 import models.sabores.Sabor;
-import models.tipos.Simples;
+import models.tipos.Premium;
+import models.tipos.TipoPizza;
 
 /**
  *
@@ -24,11 +25,12 @@ public class Pizzaria {
         ArrayList<Cliente> clientes = new ArrayList<>();
         ArrayList<Pedido> pedidos = new ArrayList<>();
         ArrayList<Sabor> sabores = new ArrayList<>();
+        ArrayList<TipoPizza> tipos = new ArrayList<>();
 
         /* -- adicionar sabor -- */
-        ArrayList<String> ingredientes1 = new ArrayList<>();
-        ingredientes1.add("calabresa");
-        Sabor sabor1 = new Simples("Calabresa", ingredientes1);
+        TipoPizza premium = new Premium();
+        tipos.add(premium);
+        Sabor sabor1 = new Sabor("Calabresa", "calabresa", premium);
         sabores.add(sabor1);
 
         /* -- adicionar cliente */
