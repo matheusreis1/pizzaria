@@ -9,7 +9,7 @@ import models.Pedido;
 import models.Pizza;
 import models.formas.Quadrado;
 import models.sabores.Sabor;
-import models.sabores.Simples;
+import models.tipos.Simples;
 
 /**
  *

@@ -1,10 +1,10 @@
 package models;
 
-import models.formas.Forma;
-import models.sabores.Sabor;
-import enums.TipoPizza;
 import errors.MaximumFlavorSize;
 import java.util.ArrayList;
+import models.formas.Forma;
+import models.sabores.Sabor;
+import models.tipos.TipoPizza;
 
 /**
  *
@@ -49,7 +49,7 @@ public class Pizza {
             if (!saborAntigo.equals(sabor.getTipo())) {
                 quantidadeSaboresDiferentes++;
             }
-            preco += sabor.getPreco();
+            preco += sabor.getTipo().getPreco();
         }
         double precoTotal = preco / quantidadeSaboresDiferentes;
         return precoTotal;

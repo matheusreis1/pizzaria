@@ -1,32 +1,37 @@
 package models.sabores;
 
-import enums.TipoPizza;
-import java.util.ArrayList;
+import models.tipos.TipoPizza;
 
 /**
  *
  * @author user
  */
-public abstract class Sabor {
+public class Sabor {
 
-    private double preco;
-    private final String nome;
-    private final ArrayList<String> ingredientes;
-    private final TipoPizza tipo;
+    private String nome;
+    private String ingredientes;
+    private TipoPizza tipo;
 
-    public Sabor(double preco, String nome, ArrayList<String> ingredientes, TipoPizza tipo) {
-        this.preco = preco;
+    public Sabor(String nome, String ingredientes, TipoPizza tipo) {
         this.nome = nome;
         this.ingredientes = ingredientes;
         this.tipo = tipo;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public double getPreco() {
-        return this.preco;
+    public void setIngredientes(String ingredientes) {
+        this.ingredientes = ingredientes;
+    }
+
+    public void setTipo(TipoPizza tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getNome() {
+        return this.nome;
     }
 
     public TipoPizza getTipo() {
