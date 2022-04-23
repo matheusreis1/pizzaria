@@ -7,12 +7,14 @@ package views;
 import java.util.ArrayList;
 import java.util.List;
 import models.Cliente;
+import models.sabores.Sabor;
 import models.tipos.Especial;
 import models.tipos.Premium;
 import models.tipos.Simples;
 import models.tipos.TipoPizza;
 import views.tables.BaseTable;
 import views.tables.ClienteTable;
+import views.tables.SaboresTable;
 import views.tables.TipoPizzaTable;
 
 /**
@@ -29,6 +31,10 @@ public class Pizzaria extends javax.swing.JFrame {
     private List<TipoPizza> tipos;
     private int tipoLinhaSelecionada = -1;
     private BaseTable tiposTableModel = new TipoPizzaTable();
+    /* sabores */
+    private List<Sabor> sabores;
+    private int saborLinhaSelecionada = -1;
+    private BaseTable saborTableModel = new SaboresTable();
 
     /**
      * Creates new form Pizzaria
@@ -47,6 +53,13 @@ public class Pizzaria extends javax.swing.JFrame {
         tipos.add(especial);
         tipos.add(premium);
         tiposTableModel.atualizarTabela(tipos);
+
+        /* sabores */
+        sabores = new ArrayList<>();
+        saboresTipoComboBox.addItem(simples);
+        saboresTipoComboBox.addItem(especial);
+        saboresTipoComboBox.addItem(premium);
+
     }
 
     private void limparClientesForm() {
@@ -71,6 +84,12 @@ public class Pizzaria extends javax.swing.JFrame {
     private void preencherTiposForm(TipoPizza tipo) {
         tipoNomeText.setText(tipo.getNome());
         tipoPrecoText.setValue(tipo.getPreco());
+    }
+
+    private void limparSaboresForm() {
+        saboresNomeText.setText("");
+        saboresIngredientesText.setText("");
+        saboresTipoComboBox.setSelectedIndex(-1);
     }
 
     /**
@@ -112,12 +131,12 @@ public class Pizzaria extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        saboresTipoCombo = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
+        saboresNomeText = new javax.swing.JTextField();
+        saboresIngredientesText = new javax.swing.JTextField();
+        saboresTipoComboBox = new javax.swing.JComboBox<>();
+        saboresSalvarButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        saboresTable = new javax.swing.JTable();
         pedidosPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -318,20 +337,17 @@ public class Pizzaria extends javax.swing.JFrame {
 
         jLabel11.setText("Ingredientes");
 
-        jButton4.setText("cadastrar");
+        saboresTipoComboBox.setRenderer(new TipoComboBox());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        saboresSalvarButton.setText("salvar");
+        saboresSalvarButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                saboresSalvarButtonMouseReleased(evt);
             }
-        ));
-        jScrollPane3.setViewportView(jTable2);
+        });
+
+        saboresTable.setModel(saborTableModel);
+        jScrollPane3.setViewportView(saboresTable);
 
         javax.swing.GroupLayout saboresPanelLayout = new javax.swing.GroupLayout(saboresPanel);
         saboresPanel.setLayout(saboresPanelLayout);
@@ -346,17 +362,17 @@ public class Pizzaria extends javax.swing.JFrame {
                             .addGroup(saboresPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(saboresNomeText, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, saboresPanelLayout.createSequentialGroup()
                                 .addGroup(saboresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel10))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(saboresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField5)
-                                    .addComponent(saboresTipoCombo, 0, 190, Short.MAX_VALUE))))
+                                    .addComponent(saboresIngredientesText)
+                                    .addComponent(saboresTipoComboBox, 0, 190, Short.MAX_VALUE))))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)
+                        .addComponent(saboresSalvarButton)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -366,16 +382,16 @@ public class Pizzaria extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(saboresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(saboresNomeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saboresSalvarButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(saboresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(saboresIngredientesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(saboresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(saboresTipoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(saboresTipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -579,7 +595,6 @@ public class Pizzaria extends javax.swing.JFrame {
         if (tipoLinhaSelecionada == -1) {
             return;
         }
-        System.out.println("views.Pizzaria.tipoSalvarButtonMouseReleased()" + tipoLinhaSelecionada);
         TipoPizza tipo = this.tipos.get(tipoLinhaSelecionada);
 
         double preco = Double.parseDouble(tipoPrecoText.getValue().toString());
@@ -598,6 +613,22 @@ public class Pizzaria extends javax.swing.JFrame {
 
         preencherTiposForm(tipo);
     }//GEN-LAST:event_tiposTableMouseReleased
+
+    private void saboresSalvarButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saboresSalvarButtonMouseReleased
+//        saborLinhaSelecionada = saboresTable.getSelectedRow();
+//        if (saborLinhaSelecionada == -1) {
+//            return;
+//        }
+        String nome = saboresNomeText.getText();
+        String ingredientes = saboresIngredientesText.getText();
+        TipoPizza tipo = (TipoPizza) saboresTipoComboBox.getSelectedItem();
+
+        Sabor sabor = new Sabor(nome, ingredientes, tipo);
+        sabores.add(sabor);
+        saborTableModel.adicionar(sabor);
+
+        limparSaboresForm();
+    }//GEN-LAST:event_saboresSalvarButtonMouseReleased
 
     /**
      * @param args the command line arguments
@@ -648,7 +679,6 @@ public class Pizzaria extends javax.swing.JFrame {
     private javax.swing.JTable clientesTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -677,14 +707,15 @@ public class Pizzaria extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JPanel pedidosPanel;
+    private javax.swing.JTextField saboresIngredientesText;
+    private javax.swing.JTextField saboresNomeText;
     private javax.swing.JPanel saboresPanel;
-    private javax.swing.JComboBox<String> saboresTipoCombo;
+    private javax.swing.JButton saboresSalvarButton;
+    private javax.swing.JTable saboresTable;
+    private javax.swing.JComboBox<TipoPizza> saboresTipoComboBox;
     private javax.swing.JTextField tipoNomeText;
     private javax.swing.JFormattedTextField tipoPrecoText;
     private javax.swing.JButton tipoSalvarButton;

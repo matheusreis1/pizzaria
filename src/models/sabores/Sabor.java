@@ -34,6 +34,10 @@ public class Sabor {
         return this.nome;
     }
 
+    public String getIngredientes() {
+        return this.ingredientes;
+    }
+
     public TipoPizza getTipo() {
         return this.tipo;
     }
