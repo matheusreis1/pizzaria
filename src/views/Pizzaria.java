@@ -7,7 +7,13 @@ package views;
 import java.util.ArrayList;
 import java.util.List;
 import models.Cliente;
+import models.tipos.Especial;
+import models.tipos.Premium;
+import models.tipos.Simples;
+import models.tipos.TipoPizza;
+import views.tables.BaseTable;
 import views.tables.ClienteTable;
+import views.tables.TipoPizzaTable;
 
 /**
  *
@@ -15,15 +21,32 @@ import views.tables.ClienteTable;
  */
 public class Pizzaria extends javax.swing.JFrame {
 
-    private List<Cliente> clientes = new ArrayList<>();
+    /* cliente */
+    private List<Cliente> clientes;
     private int clientesLinhaSelecionada = -1;
-    private ClienteTable clientesTableModel = new ClienteTable();
+    private BaseTable clientesTableModel = new ClienteTable();
+    /* tipos de pizza */
+    private List<TipoPizza> tipos;
+    private int tipoLinhaSelecionada = -1;
+    private BaseTable tiposTableModel = new TipoPizzaTable();
 
     /**
      * Creates new form Pizzaria
      */
     public Pizzaria() {
         initComponents();
+        /* cliente */
+        clientes = new ArrayList<>();
+
+        /* tipos */
+        TipoPizza premium = new Premium();
+        TipoPizza especial = new Especial();
+        TipoPizza simples = new Simples();
+        tipos = new ArrayList<>();
+        tipos.add(simples);
+        tipos.add(especial);
+        tipos.add(premium);
+        tiposTableModel.atualizarTabela(tipos);
     }
 
     private void limparClientesForm() {
@@ -38,6 +61,16 @@ public class Pizzaria extends javax.swing.JFrame {
         clienteNomeField.setText(cliente.getNome());
         clienteSobreNomeField.setText(cliente.getSobrenome());
         clienteTelefoneField.setText(cliente.getTelefone());
+    }
+
+    private void limparTiposForm() {
+        tipoNomeText.setText("");
+        tipoPrecoText.setText("");
+    }
+
+    private void preencherTiposForm(TipoPizza tipo) {
+        tipoNomeText.setText(tipo.getNome());
+        tipoPrecoText.setValue(tipo.getPreco());
     }
 
     /**
@@ -74,7 +107,7 @@ public class Pizzaria extends javax.swing.JFrame {
         tipoNomeText = new javax.swing.JTextField();
         tipoSalvarButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tiposTable = new javax.swing.JTable();
         saboresPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -247,28 +280,33 @@ public class Pizzaria extends javax.swing.JFrame {
         jLabel9.setText("Preço (cm²)");
 
         tipoPrecoText.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        tipoPrecoText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoPrecoTextActionPerformed(evt);
+            }
+        });
 
         tipoNomeText.setEnabled(false);
 
         tipoSalvarButton.setText("salvar");
+        tipoSalvarButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tipoSalvarButtonMouseReleased(evt);
+            }
+        });
         tipoSalvarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipoSalvarButtonActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        tiposTable.setModel(tiposTableModel);
+        tiposTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tiposTableMouseReleased(evt);
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        });
+        jScrollPane2.setViewportView(tiposTable);
 
         javax.swing.GroupLayout tiposPanelLayout = new javax.swing.GroupLayout(tiposPanel);
         tiposPanel.setLayout(tiposPanelLayout);
@@ -277,22 +315,19 @@ public class Pizzaria extends javax.swing.JFrame {
             .addGroup(tiposPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tiposPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tiposPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(tiposPanelLayout.createSequentialGroup()
-                        .addGroup(tiposPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tiposPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(tiposPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(10, 10, 10)))
-                        .addGroup(tiposPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tipoPrecoText)
-                            .addComponent(tipoNomeText, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(tipoSalvarButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jLabel8)
+                        .addGap(10, 10, 10)))
+                .addGroup(tiposPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tipoPrecoText)
+                    .addComponent(tipoNomeText, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(tipoSalvarButton)
+                .addContainerGap(579, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         tiposPanelLayout.setVerticalGroup(
             tiposPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,9 +341,8 @@ public class Pizzaria extends javax.swing.JFrame {
                 .addGroup(tiposPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(tipoPrecoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Tipos de pizza", tiposPanel);
@@ -636,6 +670,34 @@ public class Pizzaria extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void tipoSalvarButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tipoSalvarButtonMouseReleased
+        if (tipoLinhaSelecionada == -1) {
+            return;
+        }
+        System.out.println("views.Pizzaria.tipoSalvarButtonMouseReleased()" + tipoLinhaSelecionada);
+        TipoPizza tipo = this.tipos.get(tipoLinhaSelecionada);
+
+        double preco = Double.parseDouble(tipoPrecoText.getValue().toString());
+        tipo.setPreco(preco);
+        tiposTableModel.atualizarTabela(this.tipos);
+
+        limparTiposForm();
+    }//GEN-LAST:event_tipoSalvarButtonMouseReleased
+
+    private void tiposTableMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tiposTableMouseReleased
+        tipoLinhaSelecionada = tiposTable.getSelectedRow();
+        if (tipoLinhaSelecionada == -1) {
+            return;
+        }
+        TipoPizza tipo = this.tipos.get(tipoLinhaSelecionada);
+
+        preencherTiposForm(tipo);
+    }//GEN-LAST:event_tiposTableMouseReleased
+
+    private void tipoPrecoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoPrecoTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipoPrecoTextActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -714,7 +776,6 @@ public class Pizzaria extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
@@ -727,5 +788,6 @@ public class Pizzaria extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField tipoPrecoText;
     private javax.swing.JButton tipoSalvarButton;
     private javax.swing.JPanel tiposPanel;
+    private javax.swing.JTable tiposTable;
     // End of variables declaration//GEN-END:variables
 }

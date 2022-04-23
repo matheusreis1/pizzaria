@@ -10,7 +10,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public abstract class BaseTable<T> extends AbstractTableModel {
 
-    private String[] colunas;
+    private final String[] colunas;
     protected List itens;
 
     public BaseTable(String[] colunas) {
