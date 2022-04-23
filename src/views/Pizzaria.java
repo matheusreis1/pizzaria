@@ -154,21 +154,11 @@ public class Pizzaria extends javax.swing.JFrame {
                 clienteCadastrarButtonMouseReleased(evt);
             }
         });
-        clienteCadastrarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clienteCadastrarButtonActionPerformed(evt);
-            }
-        });
 
         clienteAtualizarButton.setText("atualizar");
         clienteAtualizarButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 clienteAtualizarButtonMouseReleased(evt);
-            }
-        });
-        clienteAtualizarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clienteAtualizarButtonActionPerformed(evt);
             }
         });
 
@@ -178,28 +168,13 @@ public class Pizzaria extends javax.swing.JFrame {
                 clienteExcluirButtonMouseReleased(evt);
             }
         });
-        clienteExcluirButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clienteExcluirButtonActionPerformed(evt);
-            }
-        });
 
         clientePesquisarButton.setText("pesquisar");
-        clientePesquisarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientePesquisarButtonActionPerformed(evt);
-            }
-        });
 
         clientesLimparButton.setText("limpar");
         clientesLimparButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 clientesLimparButtonMouseReleased(evt);
-            }
-        });
-        clientesLimparButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientesLimparButtonActionPerformed(evt);
             }
         });
 
@@ -280,11 +255,6 @@ public class Pizzaria extends javax.swing.JFrame {
         jLabel9.setText("Preço (cm²)");
 
         tipoPrecoText.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
-        tipoPrecoText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoPrecoTextActionPerformed(evt);
-            }
-        });
 
         tipoNomeText.setEnabled(false);
 
@@ -292,11 +262,6 @@ public class Pizzaria extends javax.swing.JFrame {
         tipoSalvarButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tipoSalvarButtonMouseReleased(evt);
-            }
-        });
-        tipoSalvarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoSalvarButtonActionPerformed(evt);
             }
         });
 
@@ -354,11 +319,6 @@ public class Pizzaria extends javax.swing.JFrame {
         jLabel11.setText("Ingredientes");
 
         jButton4.setText("cadastrar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -448,27 +408,12 @@ public class Pizzaria extends javax.swing.JFrame {
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("adicionar pizza");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jButton3.setText("salvar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
 
         jTextField1.setText("jTextField1");
 
         jButton5.setText("pesquisar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
 
         jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField3.setEnabled(false);
@@ -572,22 +517,6 @@ public class Pizzaria extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clienteCadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteCadastrarButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clienteCadastrarButtonActionPerformed
-
-    private void clienteAtualizarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteAtualizarButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clienteAtualizarButtonActionPerformed
-
-    private void clienteExcluirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteExcluirButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clienteExcluirButtonActionPerformed
-
-    private void clientePesquisarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientePesquisarButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clientePesquisarButtonActionPerformed
-
     private void clienteCadastrarButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clienteCadastrarButtonMouseReleased
         if (clientesLinhaSelecionada != -1) {
             return;
@@ -646,30 +575,6 @@ public class Pizzaria extends javax.swing.JFrame {
         limparClientesForm();
     }//GEN-LAST:event_clienteExcluirButtonMouseReleased
 
-    private void clientesLimparButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesLimparButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clientesLimparButtonActionPerformed
-
-    private void tipoSalvarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoSalvarButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tipoSalvarButtonActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void tipoSalvarButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tipoSalvarButtonMouseReleased
         if (tipoLinhaSelecionada == -1) {
             return;
@@ -693,10 +598,6 @@ public class Pizzaria extends javax.swing.JFrame {
 
         preencherTiposForm(tipo);
     }//GEN-LAST:event_tiposTableMouseReleased
-
-    private void tipoPrecoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoPrecoTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tipoPrecoTextActionPerformed
 
     /**
      * @param args the command line arguments
