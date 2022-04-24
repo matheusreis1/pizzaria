@@ -35,6 +35,14 @@ public class Pedido {
         return status;
     }
 
+    public String getIdentificador() {
+        return this.identificador;
+    }
+
+    public Cliente getCliente() {
+        return this.cliente;
+    }
+
     public void addPizza(Pizza pizza) {
         this.pizzas.add(pizza);
     }

@@ -4,16 +4,27 @@
  */
 package views;
 
+import errors.MaximumFlavorSize;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Cliente;
+import models.Pedido;
+import models.Pizza;
+import models.formas.Forma;
 import models.sabores.Sabor;
 import models.tipos.Especial;
 import models.tipos.Premium;
 import models.tipos.Simples;
 import models.tipos.TipoPizza;
+import views.combobox.ClienteComboBoxModel;
+import views.combobox.ClienteComboBoxRenderer;
+import views.combobox.FormaComboBoxRenderer;
+import views.combobox.SaboresComboBoxRenderer;
 import views.tables.BaseTable;
 import views.tables.ClienteTable;
+import views.tables.PedidoTable;
 import views.tables.SaboresTable;
 import views.tables.TipoPizzaTable;
 
@@ -35,6 +46,12 @@ public class Pizzaria extends javax.swing.JFrame {
     private List<Sabor> sabores;
     private int saborLinhaSelecionada = -1;
     private BaseTable saborTableModel = new SaboresTable();
+    /* pedidos */
+    private List<Pedido> pedidos;
+    private int pedidoLinhaSelecionada = -1;
+    private BaseTable pedidoTableModel = new PedidoTable();
+
+    private ClienteComboBoxModel clienteComboBoxModel = new ClienteComboBoxModel();
 
     /**
      * Creates new form Pizzaria
@@ -60,6 +77,8 @@ public class Pizzaria extends javax.swing.JFrame {
         saboresTipoComboBox.addItem(especial);
         saboresTipoComboBox.addItem(premium);
 
+        /* pedidos */
+        pedidos = new ArrayList<>();
     }
 
     private void limparClientesForm() {
@@ -145,17 +164,18 @@ public class Pizzaria extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        pedidoPizzasText = new javax.swing.JTextArea();
+        pedidosClienteComboBox = new javax.swing.JComboBox<>();
+        pedidoFormaComboBox = new javax.swing.JComboBox<>();
+        dimensaoTextField = new javax.swing.JFormattedTextField();
+        pedidoSaboresComboBox = new javax.swing.JComboBox<>();
+        pedidoAdicionarPizzaButton = new javax.swing.JButton();
+        pedidoSalvarButton = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
+        pedidosTable = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        pedidoPrecoTotal = new javax.swing.JFormattedTextField();
 
         jLabel7.setText("jLabel7");
 
@@ -227,7 +247,7 @@ public class Pizzaria extends javax.swing.JFrame {
                             .addComponent(clienteCadastrarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(clienteAtualizarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(clienteExcluirButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
                         .addComponent(clientePesquisarText, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,14 +276,14 @@ public class Pizzaria extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(clienteSobreNomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(clienteAtualizarButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clienteExcluirButton)
                     .addComponent(clientesLimparButton)
                     .addComponent(clienteTelefoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -310,7 +330,7 @@ public class Pizzaria extends javax.swing.JFrame {
                     .addComponent(tipoNomeText, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(tipoSalvarButton)
-                .addContainerGap(579, Short.MAX_VALUE))
+                .addContainerGap(470, Short.MAX_VALUE))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         tiposPanelLayout.setVerticalGroup(
@@ -326,7 +346,7 @@ public class Pizzaria extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(tipoPrecoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Tipos de pizza", tiposPanel);
@@ -356,7 +376,7 @@ public class Pizzaria extends javax.swing.JFrame {
             .addGroup(saboresPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(saboresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
                     .addGroup(saboresPanelLayout.createSequentialGroup()
                         .addGroup(saboresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(saboresPanelLayout.createSequentialGroup()
@@ -411,28 +431,33 @@ public class Pizzaria extends javax.swing.JFrame {
 
         jLabel15.setText("Pizzas do pedido");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
+        pedidoPizzasText.setColumns(20);
+        pedidoPizzasText.setRows(5);
+        jScrollPane4.setViewportView(pedidoPizzasText);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pedidosClienteComboBox.setModel(clienteComboBoxModel);
+        pedidosClienteComboBox.setRenderer(new ClienteComboBoxRenderer());
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pedidoFormaComboBox.setRenderer(new FormaComboBoxRenderer());
 
-        jFormattedTextField2.setText("jFormattedTextField2");
+        pedidoSaboresComboBox.setRenderer(new SaboresComboBoxRenderer());
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pedidoAdicionarPizzaButton.setText("adicionar pizza");
+        pedidoAdicionarPizzaButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                pedidoAdicionarPizzaButtonMouseReleased(evt);
+            }
+        });
 
-        jButton1.setText("adicionar pizza");
+        pedidoSalvarButton.setText("salvar");
 
-        jButton3.setText("salvar");
-
-        jTextField1.setText("jTextField1");
+        pedidosTable.setModel(pedidoTableModel);
+        jScrollPane5.setViewportView(pedidosTable);
 
         jButton5.setText("pesquisar");
 
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jFormattedTextField3.setEnabled(false);
+        pedidoPrecoTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        pedidoPrecoTotal.setEnabled(false);
 
         javax.swing.GroupLayout pedidosPanelLayout = new javax.swing.GroupLayout(pedidosPanel);
         pedidosPanel.setLayout(pedidosPanelLayout);
@@ -447,12 +472,12 @@ public class Pizzaria extends javax.swing.JFrame {
                             .addGroup(pedidosPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(22, 22, 22)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pedidosClienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1))
+                                .addComponent(pedidoAdicionarPizzaButton))
                             .addComponent(jLabel6)
                             .addGroup(pedidosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pedidoFormaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(pedidosPanelLayout.createSequentialGroup()
                                     .addGroup(pedidosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pedidosPanelLayout.createSequentialGroup()
@@ -462,23 +487,23 @@ public class Pizzaria extends javax.swing.JFrame {
                                             .addComponent(jLabel13)
                                             .addGap(17, 17, 17)))
                                     .addGroup(pedidosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                        .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                        .addComponent(dimensaoTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                        .addComponent(pedidoSaboresComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pedidosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
                             .addComponent(jLabel15)
-                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43)
+                            .addComponent(pedidoPrecoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addGap(0, 111, Short.MAX_VALUE))
+                        .addComponent(pedidoSalvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 2, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pedidosPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pedidosPanelLayout.setVerticalGroup(
@@ -486,34 +511,34 @@ public class Pizzaria extends javax.swing.JFrame {
             .addGroup(pedidosPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pedidosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3)
+                    .addComponent(pedidoSalvarButton)
                     .addGroup(pedidosPanelLayout.createSequentialGroup()
                         .addGroup(pedidosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel15)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                            .addComponent(pedidosClienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pedidoAdicionarPizzaButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pedidosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pedidoFormaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pedidosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dimensaoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pedidosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
-                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(pedidoSaboresComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pedidoPrecoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane4))
                 .addGap(18, 18, 18)
                 .addGroup(pedidosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -523,11 +548,13 @@ public class Pizzaria extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, Short.MAX_VALUE)
         );
 
         pack();
@@ -543,6 +570,7 @@ public class Pizzaria extends javax.swing.JFrame {
         cliente.setTelefone(clienteTelefoneField.getText());
         clientes.add(cliente);
         clientesTableModel.adicionar(cliente);
+        clienteComboBoxModel.adicionar(cliente);
 
         limparClientesForm();
     }//GEN-LAST:event_clienteCadastrarButtonMouseReleased
@@ -630,6 +658,28 @@ public class Pizzaria extends javax.swing.JFrame {
         limparSaboresForm();
     }//GEN-LAST:event_saboresSalvarButtonMouseReleased
 
+    private void pedidoAdicionarPizzaButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoAdicionarPizzaButtonMouseReleased
+        Cliente cliente = (Cliente) pedidosClienteComboBox.getSelectedItem();
+        // comecar o pedido com o cliente selecionado
+
+        Pizza pizza = new Pizza();
+
+        Forma forma = (Forma) pedidoFormaComboBox.getSelectedItem();
+        pizza.setForma(forma);
+
+        Sabor sabores[] = (Sabor[]) pedidoSaboresComboBox.getSelectedObjects();
+        for (Sabor sabor : sabores) {
+            try {
+                System.out.println("sabor" + sabor.getNome());
+                pizza.addSabor(sabor);
+            } catch (MaximumFlavorSize ex) {
+                // atingiu o numero maximo de 2 sabores
+                Logger.getLogger(Pizzaria.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_pedidoAdicionarPizzaButtonMouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -677,14 +727,8 @@ public class Pizzaria extends javax.swing.JFrame {
     private javax.swing.JButton clientesLimparButton;
     private javax.swing.JPanel clientesPanel;
     private javax.swing.JTable clientesTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JFormattedTextField dimensaoTextField;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -707,9 +751,16 @@ public class Pizzaria extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton pedidoAdicionarPizzaButton;
+    private javax.swing.JComboBox<Forma> pedidoFormaComboBox;
+    private javax.swing.JTextArea pedidoPizzasText;
+    private javax.swing.JFormattedTextField pedidoPrecoTotal;
+    private javax.swing.JComboBox<Sabor> pedidoSaboresComboBox;
+    private javax.swing.JButton pedidoSalvarButton;
+    private javax.swing.JComboBox<Cliente> pedidosClienteComboBox;
     private javax.swing.JPanel pedidosPanel;
+    private javax.swing.JTable pedidosTable;
     private javax.swing.JTextField saboresIngredientesText;
     private javax.swing.JTextField saboresNomeText;
     private javax.swing.JPanel saboresPanel;
