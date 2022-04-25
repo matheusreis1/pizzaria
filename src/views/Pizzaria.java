@@ -18,7 +18,7 @@ import models.tipos.Especial;
 import models.tipos.Premium;
 import models.tipos.Simples;
 import models.tipos.TipoPizza;
-import views.combobox.ClienteComboBoxModel;
+import views.combobox.BaseComboBoxModel;
 import views.combobox.ClienteComboBoxRenderer;
 import views.combobox.FormaComboBoxRenderer;
 import views.combobox.SaboresComboBoxRenderer;
@@ -51,7 +51,7 @@ public class Pizzaria extends javax.swing.JFrame {
     private int pedidoLinhaSelecionada = -1;
     private BaseTable pedidoTableModel = new PedidoTable();
 
-    private ClienteComboBoxModel clienteComboBoxModel = new ClienteComboBoxModel();
+    private BaseComboBoxModel clienteComboBoxModel = new BaseComboBoxModel<Cliente>();
 
     /**
      * Creates new form Pizzaria
