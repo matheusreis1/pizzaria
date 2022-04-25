@@ -584,6 +584,7 @@ public class Pizzaria extends javax.swing.JFrame {
         cliente.setTelefone(clienteTelefoneField.getText());
 
         clientesTableModel.atualizarTabela(this.clientes);
+        clienteComboBoxModel.atualizar(this.clientes);
 
         limparClientesForm();
     }//GEN-LAST:event_clienteAtualizarButtonMouseReleased
@@ -613,6 +614,7 @@ public class Pizzaria extends javax.swing.JFrame {
 
         clientesTableModel.remover(cliente);
         clientesTableModel.atualizarTabela(this.clientes);
+        clienteComboBoxModel.remover(cliente);
 
         limparClientesForm();
     }//GEN-LAST:event_clienteExcluirButtonMouseReleased

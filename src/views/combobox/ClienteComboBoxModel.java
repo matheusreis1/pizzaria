@@ -50,13 +50,18 @@ public class ClienteComboBoxModel<Cliente> extends AbstractListModel<Cliente> im
     public void adicionar(Cliente cliente) {
         this.clientes.add(cliente);
         fireIntervalAdded(this, getSize() - 1, getSize() - 1);
-        setSelectedItem(this.clientes.get(getSize() - 1));
     }
 
-    public void remover() {
-        this.clientes.remove(getSelectedItem());
-        fireIntervalRemoved(this, FIRST, getSize() - 1);
-        setSelectedItem(this.clientes.get(FIRST));
+    public void remover(Cliente cliente) {
+        int index = this.clientes.indexOf(cliente);
+        this.clientes.remove(index);
+        fireIntervalRemoved(this, FIRST, getSize());
+    }
+
+    public void atualizar(List<Cliente> clientes) {
+        this.clientes = new ArrayList<>();
+        this.clientes.addAll(clientes);
+        fireContentsChanged(this, FIRST, getSize() - 1);
     }
 
 }
