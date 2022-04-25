@@ -1,6 +1,5 @@
 package models.formas;
 
-import models.formas.Forma;
 import enums.FormaPizza;
 import errors.InvalidSizeInput;
 
@@ -13,6 +12,10 @@ public class Quadrado extends Forma {
     private static final double MINIMUM_SIZE = 20;
     private static final double MAXIMUM_SIZE = 60;
     private double lado;
+
+    public Quadrado() {
+        super(FormaPizza.QUADRADO);
+    }
 
     public Quadrado(double lado) throws InvalidSizeInput {
         super(FormaPizza.QUADRADO);

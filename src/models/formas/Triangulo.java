@@ -13,6 +13,10 @@ public class Triangulo extends Forma {
     private static final double MAXIMUM_SIZE = 60;
     private double lado;
 
+    public Triangulo() {
+        super(FormaPizza.TRIANGULO);
+    }
+
     public Triangulo(double lado) throws InvalidSizeInput {
         super(FormaPizza.TRIANGULO);
         this.setLado(lado);

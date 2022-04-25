@@ -1,6 +1,5 @@
 package models.formas;
 
-import models.formas.Forma;
 import enums.FormaPizza;
 import errors.InvalidSizeInput;
 
@@ -13,6 +12,10 @@ public class Circular extends Forma {
     private static final double MINIMUM_SIZE = 7;
     private static final double MAXIMUM_SIZE = 23;
     private double raio;
+
+    public Circular() {
+        super(FormaPizza.CIRCULAR);
+    }
 
     public Circular(double raio) throws InvalidSizeInput {
         super(FormaPizza.CIRCULAR);

@@ -12,7 +12,10 @@ import java.util.logging.Logger;
 import models.Cliente;
 import models.Pedido;
 import models.Pizza;
+import models.formas.Circular;
 import models.formas.Forma;
+import models.formas.Quadrado;
+import models.formas.Triangulo;
 import models.sabores.Sabor;
 import models.tipos.Especial;
 import models.tipos.Premium;
@@ -50,8 +53,12 @@ public class Pizzaria extends javax.swing.JFrame {
     private List<Pedido> pedidos;
     private int pedidoLinhaSelecionada = -1;
     private BaseTable pedidoTableModel = new PedidoTable();
-
     private BaseComboBoxModel clienteComboBoxModel = new BaseComboBoxModel<Cliente>();
+    private BaseComboBoxModel saboresComboBoxModel = new BaseComboBoxModel<Sabor>();
+    private BaseComboBoxModel formaComboBoxModel = new BaseComboBoxModel<Forma>();
+
+    /* formas */
+    private List<Forma> formas;
 
     /**
      * Creates new form Pizzaria
@@ -79,6 +86,17 @@ public class Pizzaria extends javax.swing.JFrame {
 
         /* pedidos */
         pedidos = new ArrayList<>();
+
+        /* formas */
+        formas = new ArrayList<>();
+        Forma circular = new Circular();
+        Forma quadrado = new Quadrado();
+        Forma triangulo = new Triangulo();
+        formas.add(circular);
+        formas.add(quadrado);
+        formas.add(triangulo);
+        formaComboBoxModel.atualizar(formas);
+
     }
 
     private void limparClientesForm() {
@@ -438,8 +456,10 @@ public class Pizzaria extends javax.swing.JFrame {
         pedidosClienteComboBox.setModel(clienteComboBoxModel);
         pedidosClienteComboBox.setRenderer(new ClienteComboBoxRenderer());
 
+        pedidoFormaComboBox.setModel(formaComboBoxModel);
         pedidoFormaComboBox.setRenderer(new FormaComboBoxRenderer());
 
+        pedidoSaboresComboBox.setModel(saboresComboBoxModel);
         pedidoSaboresComboBox.setRenderer(new SaboresComboBoxRenderer());
 
         pedidoAdicionarPizzaButton.setText("adicionar pizza");
@@ -654,6 +674,7 @@ public class Pizzaria extends javax.swing.JFrame {
         Sabor sabor = new Sabor(nome, ingredientes, tipo);
         sabores.add(sabor);
         saborTableModel.adicionar(sabor);
+        saboresComboBoxModel.adicionar(sabor);
 
         limparSaboresForm();
     }//GEN-LAST:event_saboresSalvarButtonMouseReleased

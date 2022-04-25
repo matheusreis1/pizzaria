@@ -28,7 +28,7 @@ public class FormaComboBoxRenderer extends DefaultListCellRenderer {
             boolean isSelected,
             boolean cellHasFocus) {
         if (value instanceof Forma) {
-            value = ((Forma) value).getNome();
+            value = ((Forma) value).getNome().toString().toLowerCase();
         }
         super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
         return this;

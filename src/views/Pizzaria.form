@@ -617,6 +617,9 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="pedidoFormaComboBox">
               <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="formaComboBoxModel" type="code"/>
+                </Property>
                 <Property name="renderer" type="javax.swing.ListCellRenderer" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new FormaComboBoxRenderer()" type="code"/>
                 </Property>
@@ -629,6 +632,9 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="pedidoSaboresComboBox">
               <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="saboresComboBoxModel" type="code"/>
+                </Property>
                 <Property name="renderer" type="javax.swing.ListCellRenderer" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new SaboresComboBoxRenderer()" type="code"/>
                 </Property>
