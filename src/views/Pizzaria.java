@@ -99,12 +99,17 @@ public class Pizzaria extends javax.swing.JFrame {
 
     }
 
+    private boolean isClienteFieldsEmpty() {
+        return clienteNomeField.getText().isEmpty() || clienteSobreNomeField.getText().isEmpty() || clienteTelefoneField.getText().isEmpty();
+    }
+
     private void limparClientesForm() {
         clienteNomeField.setText("");
         clienteSobreNomeField.setText("");
         clienteTelefoneField.setText("");
         clientesLinhaSelecionada = -1;
         clientesTableModel.atualizarTabela(clientes);
+        clienteErrorText.setText("");
     }
 
     private void preencherClientesForm(Cliente cliente) {
@@ -142,20 +147,23 @@ public class Pizzaria extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         clientesPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        clienteNomeField = new javax.swing.JTextField();
         clienteSobreNomeField = new javax.swing.JTextField();
+        clienteNomeField = new javax.swing.JTextField();
         clienteTelefoneField = new javax.swing.JTextField();
-        clienteCadastrarButton = new javax.swing.JButton();
-        clienteAtualizarButton = new javax.swing.JButton();
         clienteExcluirButton = new javax.swing.JButton();
-        clientePesquisarButton = new javax.swing.JButton();
-        clientesLimparButton = new javax.swing.JButton();
+        clienteAtualizarButton = new javax.swing.JButton();
+        clienteCadastrarButton = new javax.swing.JButton();
+        clienteErrorText = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         clientesTable = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
         clientePesquisarText = new javax.swing.JTextField();
+        clientePesquisarButton = new javax.swing.JButton();
+        clientesLimparButton = new javax.swing.JButton();
         tiposPanel = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -205,10 +213,10 @@ public class Pizzaria extends javax.swing.JFrame {
 
         jLabel3.setText("Telefone");
 
-        clienteCadastrarButton.setText("cadastrar");
-        clienteCadastrarButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        clienteExcluirButton.setText("excluir");
+        clienteExcluirButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                clienteCadastrarButtonMouseReleased(evt);
+                clienteExcluirButtonMouseReleased(evt);
             }
         });
 
@@ -219,12 +227,81 @@ public class Pizzaria extends javax.swing.JFrame {
             }
         });
 
-        clienteExcluirButton.setText("excluir");
-        clienteExcluirButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        clienteCadastrarButton.setText("cadastrar");
+        clienteCadastrarButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                clienteExcluirButtonMouseReleased(evt);
+                clienteCadastrarButtonMouseReleased(evt);
             }
         });
+
+        clienteErrorText.setForeground(new java.awt.Color(255, 0, 51));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                                .addComponent(clienteNomeField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(clienteSobreNomeField, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                    .addComponent(clienteTelefoneField))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(clienteErrorText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 102, Short.MAX_VALUE)
+                                .addComponent(clienteExcluirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(clienteAtualizarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(clienteCadastrarButton)
+                        .addContainerGap())))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(clienteNomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clienteSobreNomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(clienteTelefoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addComponent(clienteErrorText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clienteExcluirButton)
+                    .addComponent(clienteAtualizarButton)
+                    .addComponent(clienteCadastrarButton))
+                .addGap(10, 10, 10))
+        );
+
+        clientesTable.setModel(clientesTableModel);
+        clientesTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                clientesTableMouseReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(clientesTable);
 
         clientePesquisarButton.setText("pesquisar");
 
@@ -235,13 +312,31 @@ public class Pizzaria extends javax.swing.JFrame {
             }
         });
 
-        clientesTable.setModel(clientesTableModel);
-        clientesTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                clientesTableMouseReleased(evt);
-            }
-        });
-        jScrollPane1.setViewportView(clientesTable);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(154, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(clientePesquisarText, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(clientePesquisarButton))
+                    .addComponent(clientesLimparButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clientePesquisarText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clientePesquisarButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(clientesLimparButton)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout clientesPanelLayout = new javax.swing.GroupLayout(clientesPanel);
         clientesPanel.setLayout(clientesPanelLayout);
@@ -250,58 +345,22 @@ public class Pizzaria extends javax.swing.JFrame {
             .addGroup(clientesPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(clientesPanelLayout.createSequentialGroup()
-                        .addGroup(clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(clienteSobreNomeField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(clienteTelefoneField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                            .addComponent(clienteNomeField, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(18, 18, 18)
-                        .addGroup(clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(clienteCadastrarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(clienteAtualizarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(clienteExcluirButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
-                        .addComponent(clientePesquisarText, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(clientePesquisarButton)
-                            .addComponent(clientesLimparButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(6, 6, 6))
         );
         clientesPanelLayout.setVerticalGroup(
             clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clientesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(clientesPanelLayout.createSequentialGroup()
-                        .addGroup(clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel1)
-                                .addComponent(clienteNomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(clienteCadastrarButton))
-                            .addGroup(clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(clientePesquisarButton)
-                                .addComponent(clientePesquisarText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(clienteSobreNomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(clienteAtualizarButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clienteExcluirButton)
-                    .addComponent(clientesLimparButton)
-                    .addComponent(clienteTelefoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                .addGroup(clientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -348,7 +407,7 @@ public class Pizzaria extends javax.swing.JFrame {
                     .addComponent(tipoNomeText, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(tipoSalvarButton)
-                .addContainerGap(483, Short.MAX_VALUE))
+                .addContainerGap(495, Short.MAX_VALUE))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         tiposPanelLayout.setVerticalGroup(
@@ -364,7 +423,7 @@ public class Pizzaria extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(tipoPrecoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE))
+                .addComponent(jScrollPane2))
         );
 
         jTabbedPane1.addTab("Tipos de pizza", tiposPanel);
@@ -394,7 +453,7 @@ public class Pizzaria extends javax.swing.JFrame {
             .addGroup(saboresPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(saboresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
                     .addGroup(saboresPanelLayout.createSequentialGroup()
                         .addGroup(saboresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(saboresPanelLayout.createSequentialGroup()
@@ -518,7 +577,7 @@ public class Pizzaria extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pedidoSalvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 46, Short.MAX_VALUE))
+                        .addGap(0, 58, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pedidosPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -558,7 +617,7 @@ public class Pizzaria extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -572,7 +631,7 @@ public class Pizzaria extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -580,6 +639,10 @@ public class Pizzaria extends javax.swing.JFrame {
 
     private void clienteCadastrarButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clienteCadastrarButtonMouseReleased
         if (clientesLinhaSelecionada != -1) {
+            return;
+        }
+        if (isClienteFieldsEmpty()) {
+            clienteErrorText.setText("Todos os campos sao obrigatorios!");
             return;
         }
         Cliente cliente = new Cliente();
@@ -597,6 +660,11 @@ public class Pizzaria extends javax.swing.JFrame {
         if (clientesLinhaSelecionada == -1) {
             return;
         }
+        if (isClienteFieldsEmpty()) {
+            clienteErrorText.setText("Todos os campos sao obrigatorios!");
+            return;
+        }
+
         Cliente cliente = this.clientes.get(clientesLinhaSelecionada);
 
         cliente.setNome(clienteNomeField.getText());
@@ -681,10 +749,8 @@ public class Pizzaria extends javax.swing.JFrame {
 
     private void pedidoAdicionarPizzaButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoAdicionarPizzaButtonMouseReleased
         Cliente cliente = (Cliente) pedidosClienteComboBox.getSelectedItem();
-        // comecar o pedido com o cliente selecionado
 
         Pizza pizza = new Pizza();
-
         Forma forma = (Forma) pedidoFormaComboBox.getSelectedItem();
         pizza.setForma(forma);
 
@@ -739,6 +805,7 @@ public class Pizzaria extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clienteAtualizarButton;
     private javax.swing.JButton clienteCadastrarButton;
+    private javax.swing.JLabel clienteErrorText;
     private javax.swing.JButton clienteExcluirButton;
     private javax.swing.JTextField clienteNomeField;
     private javax.swing.JButton clientePesquisarButton;
@@ -765,6 +832,8 @@ public class Pizzaria extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

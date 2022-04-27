@@ -37,7 +37,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" pref="495" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -58,39 +58,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="clienteSobreNomeField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="clienteTelefoneField" alignment="0" pref="190" max="32767" attributes="0"/>
-                                  <Component id="clienteNomeField" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="clienteCadastrarButton" max="32767" attributes="0"/>
-                                  <Component id="clienteAtualizarButton" max="32767" attributes="0"/>
-                                  <Component id="clienteExcluirButton" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="150" max="32767" attributes="0"/>
-                              <Component id="clientePesquisarText" min="-2" pref="230" max="-2" attributes="0"/>
+                              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="clientePesquisarButton" min="-2" max="-2" attributes="0"/>
-                                  <Component id="clientesLimparButton" min="-2" pref="80" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                              <Component id="jPanel2" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -98,100 +76,151 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="clienteNomeField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="clienteCadastrarButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="clientePesquisarButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="clientePesquisarText" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="clienteSobreNomeField" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="clienteAtualizarButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jPanel1" max="32767" attributes="0"/>
+                          <Component id="jPanel2" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="clienteExcluirButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="clientesLimparButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="clienteTelefoneField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="354" max="32767" attributes="0"/>
+                      <EmptySpace pref="88" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="212" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nome"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Sobrenome"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Telefone"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="clienteNomeField">
-            </Component>
-            <Component class="javax.swing.JTextField" name="clienteSobreNomeField">
-            </Component>
-            <Component class="javax.swing.JTextField" name="clienteTelefoneField">
-            </Component>
-            <Component class="javax.swing.JButton" name="clienteCadastrarButton">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="cadastrar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clienteCadastrarButtonMouseReleased"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="clienteAtualizarButton">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="atualizar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clienteAtualizarButtonMouseReleased"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="clienteExcluirButton">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="excluir"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clienteExcluirButtonMouseReleased"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="clientePesquisarButton">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="pesquisar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="clientesLimparButton">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="limpar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clientesLimparButtonMouseReleased"/>
-              </Events>
-            </Component>
+            <Container class="javax.swing.JPanel" name="jPanel1">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace pref="46" max="32767" attributes="0"/>
+                                          <Component id="clienteNomeField" min="-2" pref="190" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="clienteSobreNomeField" pref="190" max="32767" attributes="0"/>
+                                              <Component id="clienteTelefoneField" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="clienteErrorText" alignment="1" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="0" pref="102" max="32767" attributes="0"/>
+                                          <Component id="clienteExcluirButton" min="-2" pref="78" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="clienteAtualizarButton" min="-2" pref="78" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="clienteCadastrarButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clienteNomeField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="clienteSobreNomeField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="clienteTelefoneField" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="clienteErrorText" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="clienteExcluirButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clienteAtualizarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clienteCadastrarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Nome"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Sobrenome"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Telefone"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="clienteSobreNomeField">
+                </Component>
+                <Component class="javax.swing.JTextField" name="clienteNomeField">
+                </Component>
+                <Component class="javax.swing.JTextField" name="clienteTelefoneField">
+                </Component>
+                <Component class="javax.swing.JButton" name="clienteExcluirButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="excluir"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clienteExcluirButtonMouseReleased"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="clienteAtualizarButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="atualizar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clienteAtualizarButtonMouseReleased"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="clienteCadastrarButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="cadastrar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clienteCadastrarButtonMouseReleased"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="clienteErrorText">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="0" red="ff" type="rgb"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
@@ -208,8 +237,58 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JTextField" name="clientePesquisarText">
-            </Component>
+            <Container class="javax.swing.JPanel" name="jPanel2">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace pref="154" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="clientePesquisarText" min="-2" pref="230" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="clientePesquisarButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="clientesLimparButton" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="clientePesquisarText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clientePesquisarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="clientesLimparButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="clientePesquisarText">
+                </Component>
+                <Component class="javax.swing.JButton" name="clientePesquisarButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="pesquisar"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="clientesLimparButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="limpar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clientesLimparButtonMouseReleased"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="tiposPanel">
@@ -242,7 +321,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="tipoSalvarButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="483" max="32767" attributes="0"/>
+                      <EmptySpace pref="495" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
               </Group>
@@ -262,7 +341,7 @@
                           <Component id="tipoPrecoText" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="382" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -331,7 +410,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane3" pref="830" max="32767" attributes="0"/>
+                          <Component id="jScrollPane3" pref="842" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
@@ -498,7 +577,7 @@
                               <Component id="jScrollPane4" min="-2" pref="238" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="pedidoSalvarButton" min="-2" pref="78" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="46" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="58" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -550,7 +629,7 @@
                           <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane5" pref="298" max="32767" attributes="0"/>
+                      <Component id="jScrollPane5" pref="318" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
