@@ -29,7 +29,7 @@ public class Triangulo extends Forma {
 
     public void setLado(double lado) throws InvalidSizeInput {
         if (lado < MINIMUM_SIZE || lado > MAXIMUM_SIZE) {
-            throw new InvalidSizeInput(this.getClass().getName(), MINIMUM_SIZE, MAXIMUM_SIZE);
+            throw new InvalidSizeInput(FormaPizza.TRIANGULO.toString().toLowerCase(), MINIMUM_SIZE, MAXIMUM_SIZE);
         }
         this.lado = lado;
     }

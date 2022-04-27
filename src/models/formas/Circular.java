@@ -29,7 +29,7 @@ public class Circular extends Forma {
 
     public void setRaio(double raio) throws InvalidSizeInput {
         if (raio < MINIMUM_SIZE || raio > MAXIMUM_SIZE) {
-            throw new InvalidSizeInput(this.getClass().getName(), MINIMUM_SIZE, MAXIMUM_SIZE);
+            throw new InvalidSizeInput(FormaPizza.CIRCULAR.toString().toLowerCase(), MINIMUM_SIZE, MAXIMUM_SIZE);
         }
         this.raio = raio;
     }

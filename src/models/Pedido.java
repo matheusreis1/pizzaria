@@ -55,4 +55,14 @@ public class Pedido {
         this.cliente = cliente;
     }
 
+    @Override
+    public String toString() {
+        String pizzasString = "";
+        for (Pizza pizza : this.pizzas) {
+            pizzasString += pizza.toString() + "\n";
+        }
+
+        return pizzasString; //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

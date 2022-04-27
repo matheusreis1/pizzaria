@@ -32,6 +32,10 @@ public class Pizza {
         this.sabores.add(sabor);
     }
 
+    public ArrayList<Sabor> getSabores() {
+        return sabores;
+    }
+
     private void setSabores(ArrayList<Sabor> sabores) throws MaximumFlavorSize {
         for (Sabor sabor : sabores) {
             this.addSabor(sabor);
@@ -53,6 +57,15 @@ public class Pizza {
         }
         double precoTotal = preco / quantidadeSaboresDiferentes;
         return precoTotal;
+    }
+
+    @Override
+    public String toString() {
+        String saboresString = "";
+        for (Sabor sabor : this.sabores) {
+            saboresString += sabor.getNome().toLowerCase() + ";";
+        }
+        return saboresString + this.forma.getNome();
     }
 
 }
