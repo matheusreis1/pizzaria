@@ -9,21 +9,15 @@ import models.tipos.TipoPizza;
 public class Sabor {
 
     private String nome;
-    private String ingredientes;
     private TipoPizza tipo;
 
-    public Sabor(String nome, String ingredientes, TipoPizza tipo) {
+    public Sabor(String nome, TipoPizza tipo) {
         this.nome = nome;
-        this.ingredientes = ingredientes;
         this.tipo = tipo;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public void setIngredientes(String ingredientes) {
-        this.ingredientes = ingredientes;
     }
 
     public void setTipo(TipoPizza tipo) {
@@ -32,10 +26,6 @@ public class Sabor {
 
     public String getNome() {
         return this.nome;
-    }
-
-    public String getIngredientes() {
-        return this.ingredientes;
     }
 
     public TipoPizza getTipo() {

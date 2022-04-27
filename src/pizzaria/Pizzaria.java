@@ -30,7 +30,7 @@ public class Pizzaria {
         /* -- adicionar sabor -- */
         TipoPizza premium = new Premium();
         tipos.add(premium);
-        Sabor sabor1 = new Sabor("Calabresa", "calabresa", premium);
+        Sabor sabor1 = new Sabor("Calabresa", premium);
         sabores.add(sabor1);
 
         /* -- adicionar cliente */
