@@ -146,6 +146,32 @@ public class Pizzaria extends javax.swing.JFrame {
         saboresTipoErroText.setText("");
     }
 
+    private void limparPizzaErroText() {
+        pedidoClienteErroText.setText("");
+        pedidoFormaErroText.setText("");
+        dimensaoErroText.setText("");
+        pedidoSaborErroText.setText("");
+    }
+
+    private void limparPizzaForm() {
+        this.limparPizzaErroText();
+        dimensaoTextField.setText("");
+        formaComboBoxModel.atualizar(formas);
+        saboresComboBoxModel1.atualizar(sabores);
+        saboresComboBoxModel2.atualizar(sabores);
+        pedidoSaboresComboBox1.setSelectedIndex(-1);
+        pedidoSaboresComboBox2.setSelectedIndex(-1);
+        pedidoFormaComboBox.setSelectedIndex(-1);
+    }
+
+    private void limparPedidoForm() {
+        this.limparPizzaForm();
+        pedidoPrecoTotal.setText("");
+        pedidoPizzasText.setText("");
+        clienteComboBoxModel.atualizar(this.clientes);
+        pedidosClienteComboBox.setSelectedIndex(-1);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -219,6 +245,9 @@ public class Pizzaria extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         pedidoSaboresComboBox2 = new javax.swing.JComboBox<>();
         dimensaoErroText = new javax.swing.JLabel();
+        pedidoFormaErroText = new javax.swing.JLabel();
+        pedidoSaborErroText = new javax.swing.JLabel();
+        pedidoClienteErroText = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -580,6 +609,12 @@ public class Pizzaria extends javax.swing.JFrame {
 
         dimensaoErroText.setForeground(new java.awt.Color(255, 51, 51));
 
+        pedidoFormaErroText.setForeground(new java.awt.Color(255, 51, 51));
+
+        pedidoSaborErroText.setForeground(new java.awt.Color(255, 0, 0));
+
+        pedidoClienteErroText.setForeground(new java.awt.Color(255, 51, 51));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -596,21 +631,26 @@ public class Pizzaria extends javax.swing.JFrame {
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(pedidosClienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(pedidoFormaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(dimensaoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel13)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(pedidoSaboresComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(pedidoSaboresComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(dimensaoErroText))))
+                                            .addComponent(dimensaoErroText)
+                                            .addComponent(pedidoSaborErroText)))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(pedidoFormaErroText)
+                                            .addComponent(dimensaoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(pedidoClienteErroText)
+                                            .addComponent(pedidoFormaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
@@ -637,16 +677,20 @@ public class Pizzaria extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
                                     .addComponent(pedidosClienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(pedidoAdicionarPizzaButton))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pedidoClienteErroText)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6)
-                                    .addComponent(pedidoFormaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel15))
+                                    .addComponent(pedidoFormaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pedidoFormaErroText)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
@@ -659,6 +703,8 @@ public class Pizzaria extends javax.swing.JFrame {
                             .addComponent(jLabel13)
                             .addComponent(pedidoSaboresComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pedidoPrecoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pedidoSaborErroText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19)
@@ -752,7 +798,7 @@ public class Pizzaria extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pedidosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                     .addGroup(pedidosPanelLayout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -894,6 +940,24 @@ public class Pizzaria extends javax.swing.JFrame {
     }//GEN-LAST:event_saboresSalvarButtonMouseReleased
 
     private void pedidoAdicionarPizzaButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoAdicionarPizzaButtonMouseReleased
+        limparPizzaErroText();
+        if (pedidosClienteComboBox.getSelectedIndex() == -1) {
+            pedidoClienteErroText.setText("O cliente é obrigatorio!");
+            return;
+        }
+        if (pedidoFormaComboBox.getSelectedIndex() == -1) {
+            pedidoFormaErroText.setText("A forma é obrigatoria!");
+            return;
+        }
+        if (dimensaoTextField.getText().isEmpty()) {
+            dimensaoErroText.setText("A dimensao é obrigatoria!");
+            return;
+        }
+        if ((pedidoSaboresComboBox1.getSelectedIndex() == -1) && (pedidoSaboresComboBox2.getSelectedIndex() == -1)) {
+            pedidoSaborErroText.setText("A pizza precisa ter no minimo 1 sabor!");
+            return;
+        }
+
         double dimensao = Double.parseDouble(dimensaoTextField.getText());
 
         Cliente cliente = (Cliente) pedidosClienteComboBox.getSelectedItem();
@@ -936,8 +1000,12 @@ public class Pizzaria extends javax.swing.JFrame {
         Sabor sabor1 = (Sabor) pedidoSaboresComboBox1.getSelectedItem();
         Sabor sabor2 = (Sabor) pedidoSaboresComboBox2.getSelectedItem();
         try {
-            pizza.addSabor(sabor1);
-            pizza.addSabor(sabor2);
+            if (pedidoSaboresComboBox1.getSelectedIndex() != -1) {
+                pizza.addSabor(sabor1);
+            }
+            if (pedidoSaboresComboBox2.getSelectedIndex() != -1) {
+                pizza.addSabor(sabor2);
+            }
         } catch (MaximumFlavorSize ex) {
         }
 
@@ -947,13 +1015,7 @@ public class Pizzaria extends javax.swing.JFrame {
         pedidoPizzasText.setText(pedido.toString());
 
         // clear pizza form
-        dimensaoTextField.setText("");
-        formaComboBoxModel.atualizar(formas);
-        saboresComboBoxModel1.atualizar(sabores);
-        saboresComboBoxModel2.atualizar(sabores);
-        pedidoSaboresComboBox1.setSelectedIndex(-1);
-        pedidoSaboresComboBox2.setSelectedIndex(-1);
-        pedidoFormaComboBox.setSelectedIndex(-1);
+        limparPizzaForm();
     }//GEN-LAST:event_pedidoAdicionarPizzaButtonMouseReleased
 
     private void pedidoSalvarButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoSalvarButtonMouseReleased
@@ -967,15 +1029,7 @@ public class Pizzaria extends javax.swing.JFrame {
         pedido = null;
 
         // clear pedido form
-        pedidoPrecoTotal.setText("");
-        pedidoPizzasText.setText("");
-        dimensaoTextField.setText("");
-        formaComboBoxModel.atualizar(formas);
-        saboresComboBoxModel1.atualizar(sabores);
-        saboresComboBoxModel2.atualizar(sabores);
-        pedidoSaboresComboBox1.setSelectedIndex(-1);
-        pedidoSaboresComboBox2.setSelectedIndex(-1);
-        pedidoFormaComboBox.setSelectedIndex(-1);
+        limparPedidoForm();
     }//GEN-LAST:event_pedidoSalvarButtonMouseReleased
 
     /**
@@ -1062,10 +1116,13 @@ public class Pizzaria extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton pedidoAdicionarPizzaButton;
+    private javax.swing.JLabel pedidoClienteErroText;
     private javax.swing.JComboBox<Forma> pedidoFormaComboBox;
+    private javax.swing.JLabel pedidoFormaErroText;
     private javax.swing.JTextField pedidoIdentificador;
     private javax.swing.JTextArea pedidoPizzasText;
     private javax.swing.JFormattedTextField pedidoPrecoTotal;
+    private javax.swing.JLabel pedidoSaborErroText;
     private javax.swing.JComboBox<Sabor> pedidoSaboresComboBox1;
     private javax.swing.JComboBox<Sabor> pedidoSaboresComboBox2;
     private javax.swing.JButton pedidoSalvarButton;
