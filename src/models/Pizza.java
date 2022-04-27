@@ -65,7 +65,7 @@ public class Pizza {
         for (Sabor sabor : this.sabores) {
             saboresString += sabor.getNome().toLowerCase() + ";";
         }
-        return saboresString + this.forma.getNome();
+        return saboresString + this.forma.getNome().toString().toLowerCase();
     }
 
 }

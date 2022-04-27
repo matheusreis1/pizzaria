@@ -838,6 +838,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="salvar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pedidoSalvarButtonMouseReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel19">
                   <Properties>

@@ -19,6 +19,7 @@ public class Pedido {
         this.identificador = UUID.randomUUID().toString();
         this.pizzas = new ArrayList<>();
         this.status = StatusPedido.ABERTO;
+        this.cliente = cliente;
     }
 
     public double getPreco() {

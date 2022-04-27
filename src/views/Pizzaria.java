@@ -567,6 +567,11 @@ public class Pizzaria extends javax.swing.JFrame {
         jScrollPane4.setViewportView(pedidoPizzasText);
 
         pedidoSalvarButton.setText("salvar");
+        pedidoSalvarButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                pedidoSalvarButtonMouseReleased(evt);
+            }
+        });
 
         jLabel19.setText("Sabor 2");
 
@@ -941,8 +946,37 @@ public class Pizzaria extends javax.swing.JFrame {
         pedidoPrecoTotal.setText(pedido.getPreco() + "");
         pedidoPizzasText.setText(pedido.toString());
 
-        // clear pedido form
+        // clear pizza form
+        dimensaoTextField.setText("");
+        formaComboBoxModel.atualizar(formas);
+        saboresComboBoxModel1.atualizar(sabores);
+        saboresComboBoxModel2.atualizar(sabores);
+        pedidoSaboresComboBox1.setSelectedIndex(-1);
+        pedidoSaboresComboBox2.setSelectedIndex(-1);
+        pedidoFormaComboBox.setSelectedIndex(-1);
     }//GEN-LAST:event_pedidoAdicionarPizzaButtonMouseReleased
+
+    private void pedidoSalvarButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoSalvarButtonMouseReleased
+        if (pedido == null) {
+            return;
+        }
+
+        pedidos.add(pedido);
+        pedidoTableModel.adicionar(pedido);
+
+        pedido = null;
+
+        // clear pedido form
+        pedidoPrecoTotal.setText("");
+        pedidoPizzasText.setText("");
+        dimensaoTextField.setText("");
+        formaComboBoxModel.atualizar(formas);
+        saboresComboBoxModel1.atualizar(sabores);
+        saboresComboBoxModel2.atualizar(sabores);
+        pedidoSaboresComboBox1.setSelectedIndex(-1);
+        pedidoSaboresComboBox2.setSelectedIndex(-1);
+        pedidoFormaComboBox.setSelectedIndex(-1);
+    }//GEN-LAST:event_pedidoSalvarButtonMouseReleased
 
     /**
      * @param args the command line arguments

@@ -21,7 +21,7 @@ public class PedidoTable extends BaseTable<Pedido> {
             case 0:
                 return pedido.getIdentificador();
             case 1:
-                return cliente.getNome() + cliente.getSobrenome();
+                return cliente.getNome() + " " + cliente.getSobrenome();
             case 2:
                 return pedido.getStatus();
             default:
