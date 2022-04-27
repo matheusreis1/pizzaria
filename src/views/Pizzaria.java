@@ -5,6 +5,7 @@
 package views;
 
 import errors.MaximumFlavorSize;
+import errors.NegativeValue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -69,9 +70,14 @@ public class Pizzaria extends javax.swing.JFrame {
         clientes = new ArrayList<>();
 
         /* tipos */
-        TipoPizza premium = new Premium();
-        TipoPizza especial = new Especial();
-        TipoPizza simples = new Simples();
+        TipoPizza premium = null, especial = null, simples = null;
+        try {
+            premium = new Premium();
+            especial = new Especial();
+            simples = new Simples();
+        } catch (NegativeValue ex) {
+            Logger.getLogger(Pizzaria.class.getName()).log(Level.SEVERE, null, ex);
+        }
         tipos = new ArrayList<>();
         tipos.add(simples);
         tipos.add(especial);
@@ -708,14 +714,14 @@ public class Pizzaria extends javax.swing.JFrame {
             return;
         }
         double preco = Double.parseDouble(tipoPrecoText.getValue().toString());
-        if (preco < 0) {
+        TipoPizza tipo = this.tipos.get(tipoLinhaSelecionada);
+
+        try {
+            tipo.setPreco(preco);
+        } catch (NegativeValue ex) {
             tipoErroText.setText("O preço nao pode ser negativo!");
             return;
         }
-
-        TipoPizza tipo = this.tipos.get(tipoLinhaSelecionada);
-
-        tipo.setPreco(preco);
         tiposTableModel.atualizarTabela(this.tipos);
 
         limparTiposForm();
