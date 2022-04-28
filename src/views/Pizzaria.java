@@ -191,6 +191,20 @@ public class Pizzaria extends javax.swing.JFrame {
         pedidoStatusComboBox.setSelectedItem(pedido.getStatus());
     }
 
+    private boolean validarDimensaoText() {
+        if (dimensaoTextField.getText().isEmpty()) {
+            dimensaoErroText.setText("A dimensao é obrigatoria!");
+            return false;
+        }
+        try {
+            double number = Double.parseDouble(dimensaoTextField.getText());
+            return true;
+        } catch (NumberFormatException ex) {
+            dimensaoErroText.setText("A dimensao deve ser um numero real!");
+            return false;
+        }
+    }
+
     private boolean validarCamposPizza() {
         limparPizzaErroText();
         if (pedidosClienteComboBox.getSelectedIndex() == -1) {
@@ -201,8 +215,7 @@ public class Pizzaria extends javax.swing.JFrame {
             pedidoFormaErroText.setText("A forma é obrigatoria!");
             return false;
         }
-        if (dimensaoTextField.getText().isEmpty()) {
-            dimensaoErroText.setText("A dimensao é obrigatoria!");
+        if (!validarDimensaoText()) {
             return false;
         }
         if ((pedidoSaboresComboBox1.getSelectedIndex() == -1) && (pedidoSaboresComboBox2.getSelectedIndex() == -1)) {
