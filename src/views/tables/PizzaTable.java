@@ -10,7 +10,7 @@ import models.sabores.Sabor;
 public class PizzaTable extends BaseTable<Pizza> {
 
     public PizzaTable() {
-        super(new String[]{"forma", "sabores"});
+        super(new String[]{"forma", "area", "sabores"});
     }
 
     @Override
@@ -25,6 +25,8 @@ public class PizzaTable extends BaseTable<Pizza> {
             case 0:
                 return pizza.getForma().getNome();
             case 1:
+                return pizza.getForma().area();
+            case 2:
                 return saboresString.substring(0, saboresString.length() - 1);
             default:
                 return null;

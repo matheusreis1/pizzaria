@@ -10,7 +10,7 @@ import models.Pedido;
 public class PedidoTable extends BaseTable<Pedido> {
 
     public PedidoTable() {
-        super(new String[]{"identificador", "cliente", "status"});
+        super(new String[]{"cliente", "valor", "status"});
     }
 
     @Override
@@ -19,9 +19,9 @@ public class PedidoTable extends BaseTable<Pedido> {
         Cliente cliente = pedido.getCliente();
         switch (columnIndex) {
             case 0:
-                return pedido.getIdentificador();
-            case 1:
                 return cliente.getNome() + " " + cliente.getSobrenome();
+            case 1:
+                return pedido.getPreco() + "";
             case 2:
                 return pedido.getStatus();
             default:

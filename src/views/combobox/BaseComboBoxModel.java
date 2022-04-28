@@ -45,6 +45,7 @@ public class BaseComboBoxModel<T> extends AbstractListModel<T> implements ComboB
     @Override
     public void setSelectedItem(Object anItem) {
         itemSelecionado = (T) anItem;
+        fireContentsChanged(this, FIRST, getSize());
     }
 
     public void adicionar(T item) {

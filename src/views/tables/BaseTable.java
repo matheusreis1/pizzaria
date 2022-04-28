@@ -18,6 +18,10 @@ public abstract class BaseTable<T> extends AbstractTableModel {
         this.itens = new ArrayList<T>();
     }
 
+    public List<T> getItens() {
+        return itens;
+    }
+
     @Override
     public int getRowCount() {
         return itens.size();

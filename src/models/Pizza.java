@@ -15,7 +15,6 @@ public class Pizza {
     private static final int MAXIMUM_SABOR_SIZE = 2;
     private Forma forma;
     private ArrayList<Sabor> sabores;
-    private double area;
 
     public Pizza() {
         this.sabores = new ArrayList<>();
