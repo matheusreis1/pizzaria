@@ -190,6 +190,10 @@ public class Pizzaria extends javax.swing.JFrame {
         pedidoStatusComboBox.setSelectedItem(pedido.getStatus());
     }
 
+    private void salvarPizza() {
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -254,6 +258,7 @@ public class Pizzaria extends javax.swing.JFrame {
         dimensaoErroText = new javax.swing.JLabel();
         pedidoFormaErroText = new javax.swing.JLabel();
         pedidoSaborErroText = new javax.swing.JLabel();
+        atualizarPizzaButton = new javax.swing.JButton();
         pedidoPanel = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -607,6 +612,13 @@ public class Pizzaria extends javax.swing.JFrame {
 
         pedidoSaborErroText.setForeground(new java.awt.Color(255, 0, 0));
 
+        atualizarPizzaButton.setText("atualizar pizza");
+        atualizarPizzaButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                atualizarPizzaButtonMouseReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout pizzaPanelLayout = new javax.swing.GroupLayout(pizzaPanel);
         pizzaPanel.setLayout(pizzaPanelLayout);
         pizzaPanelLayout.setHorizontalGroup(
@@ -647,7 +659,9 @@ public class Pizzaria extends javax.swing.JFrame {
                                         .addGap(31, 31, 31)
                                         .addComponent(pedidoFormaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(pedidoAdicionarPizzaButton)))
+                                        .addComponent(pedidoAdicionarPizzaButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(atualizarPizzaButton)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(101, 101, 101))))
         );
@@ -659,7 +673,8 @@ public class Pizzaria extends javax.swing.JFrame {
                 .addGroup(pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pedidoFormaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(pedidoAdicionarPizzaButton))
+                    .addComponent(pedidoAdicionarPizzaButton)
+                    .addComponent(atualizarPizzaButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pedidoFormaErroText, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1150,14 +1165,96 @@ public class Pizzaria extends javax.swing.JFrame {
         Pizza pizza = (Pizza) this.pizzaTableModel.getItens().get(pizzaLinhaSelecionada);
         formaComboBoxModel.setSelectedItem(pizza.getForma());
         dimensaoTextField.setText(pizza.getForma().getDimensao() + "");
-
         saboresComboBoxModel1.setSelectedItem(pizza.getSabores().get(0));
+
+        Cliente cliente = pedido.getCliente();
+        clienteComboBoxModel.setSelectedItem(cliente);
 
         if (pizza.getSabores().size() > 1) {
             saboresComboBoxModel2.setSelectedItem(pizza.getSabores().get(1));
         }
-
     }//GEN-LAST:event_pizzasTableMouseReleased
+
+    private void atualizarPizzaButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizarPizzaButtonMouseReleased
+        pizzaLinhaSelecionada = pizzasTable.getSelectedRow();
+        if (pizzaLinhaSelecionada == -1) {
+            return;
+        }
+        System.out.println("views.Pizzaria.atualizarPizzaButtonMouseReleased()" + this.pizzas);
+        Pizza pizza = (Pizza) this.pizzaTableModel.getItens().get(pizzaLinhaSelecionada);
+
+        limparPizzaErroText();
+        if (pedidosClienteComboBox.getSelectedIndex() == -1) {
+            pedidoClienteErroText.setText("O cliente é obrigatorio!");
+            return;
+        }
+        if (pedidoFormaComboBox.getSelectedIndex() == -1) {
+            pedidoFormaErroText.setText("A forma é obrigatoria!");
+            return;
+        }
+        if (dimensaoTextField.getText().isEmpty()) {
+            dimensaoErroText.setText("A dimensao é obrigatoria!");
+            return;
+        }
+        if ((pedidoSaboresComboBox1.getSelectedIndex() == -1) && (pedidoSaboresComboBox2.getSelectedIndex() == -1)) {
+            pedidoSaborErroText.setText("A pizza precisa ter no minimo 1 sabor!");
+            return;
+        }
+
+        pedido.setCliente((Cliente) pedidosClienteComboBox.getSelectedItem());
+
+        double dimensao = Double.parseDouble(dimensaoTextField.getText());
+
+        Forma forma = (Forma) pedidoFormaComboBox.getSelectedItem();
+        switch (forma.getNome()) {
+            case CIRCULAR:
+                try {
+                forma = new Circular(dimensao);
+            } catch (InvalidSizeInput ex) {
+                dimensaoErroText.setText(ex.getMessage());
+                return;
+            }
+            break;
+            case QUADRADO:
+                try {
+                forma = new Quadrado(dimensao);
+            } catch (InvalidSizeInput ex) {
+                dimensaoErroText.setText(ex.getMessage());
+                return;
+            }
+            break;
+            case TRIANGULO:
+                try {
+                forma = new Triangulo(dimensao);
+            } catch (InvalidSizeInput ex) {
+                dimensaoErroText.setText(ex.getMessage());
+                return;
+            }
+            break;
+        }
+        pizza.setForma(forma);
+
+        Sabor sabor1 = (Sabor) pedidoSaboresComboBox1.getSelectedItem();
+        Sabor sabor2 = (Sabor) pedidoSaboresComboBox2.getSelectedItem();
+        try {
+            if (pedidoSaboresComboBox1.getSelectedIndex() != -1) {
+                pizza.addSabor(sabor1);
+            }
+            if (pedidoSaboresComboBox2.getSelectedIndex() != -1) {
+                pizza.addSabor(sabor2);
+            }
+        } catch (MaximumFlavorSize ex) {
+        }
+
+        pedidoPrecoTotal.setText(pedido.getPreco() + "");
+
+        this.pizzas.set(pizzaLinhaSelecionada, pizza);
+        pizzaTableModel.atualizarTabela(this.pizzas);
+        pedido.setPizzas((ArrayList<Pizza>) this.pizzas);
+
+        limparPizzaForm();
+        limparNovoPedidoForm();
+    }//GEN-LAST:event_atualizarPizzaButtonMouseReleased
 
     /**
      * @param args the command line arguments
@@ -1196,6 +1293,7 @@ public class Pizzaria extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton atualizarPedidoButton;
+    private javax.swing.JButton atualizarPizzaButton;
     private javax.swing.JButton clienteAtualizarButton;
     private javax.swing.JButton clienteCadastrarButton;
     private javax.swing.JLabel clienteErrorText;

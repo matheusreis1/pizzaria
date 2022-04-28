@@ -44,6 +44,10 @@ public class Pedido {
         return this.cliente;
     }
 
+    public void setPizzas(ArrayList<Pizza> pizzas) {
+        this.pizzas = pizzas;
+    }
+
     public void addPizza(Pizza pizza) {
         this.pizzas.add(pizza);
     }

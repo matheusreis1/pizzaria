@@ -646,6 +646,8 @@
                                                       <Component id="pedidoFormaComboBox" min="-2" pref="215" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Component id="pedidoAdicionarPizzaButton" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="atualizarPizzaButton" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -666,6 +668,7 @@
                                   <Component id="pedidoFormaComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="pedidoAdicionarPizzaButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="atualizarPizzaButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="pedidoFormaErroText" min="-2" pref="11" max="-2" attributes="0"/>
@@ -789,6 +792,14 @@
                           <Color blue="0" green="0" red="ff" type="rgb"/>
                         </Property>
                       </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="atualizarPizzaButton">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="atualizar pizza"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="atualizarPizzaButtonMouseReleased"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
