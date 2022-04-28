@@ -1,6 +1,7 @@
 package views.tables;
 
 import models.tipos.TipoPizza;
+import utils.PrecoUtil;
 
 /**
  *
@@ -14,10 +15,11 @@ public class TipoPizzaTable extends BaseTable<TipoPizza> {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        TipoPizza cliente = (TipoPizza) this.itens.get(rowIndex);
+        TipoPizza tipo = (TipoPizza) this.itens.get(rowIndex);
+
         switch (columnIndex) {
-            case 0: return cliente.getNome();
-            case 1: return cliente.getPreco();
+            case 0: return tipo.getNome();
+            case 1: return PrecoUtil.format(tipo.getPreco());
             default : return null;
         }
     }
