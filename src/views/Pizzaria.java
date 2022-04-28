@@ -63,7 +63,7 @@ public class Pizzaria extends javax.swing.JFrame {
     private BaseComboBoxModel saboresComboBoxModel2 = new BaseComboBoxModel<Sabor>();
     private BaseComboBoxModel formaComboBoxModel = new BaseComboBoxModel<Forma>();
     private List<Pizza> pizzas;
-    private int pizzaoLinhaSelecionada = -1;
+    private int pizzaLinhaSelecionada = -1;
     private BaseTable pizzaTableModel = new PizzaTable();
     private DefaultComboBoxModel<StatusPedido> pedidoStatusComboBoxModel = new DefaultComboBoxModel(StatusPedido.values());
 
@@ -103,6 +103,7 @@ public class Pizzaria extends javax.swing.JFrame {
 
         /* pedidos */
         pedidos = new ArrayList<>();
+        pizzas = new ArrayList<>();
 
         /* formas */
         formas = new ArrayList<>();
@@ -113,7 +114,6 @@ public class Pizzaria extends javax.swing.JFrame {
         formas.add(quadrado);
         formas.add(triangulo);
         formaComboBoxModel.atualizar(formas);
-
     }
 
     private boolean isClienteFieldsEmpty() {
@@ -187,8 +187,6 @@ public class Pizzaria extends javax.swing.JFrame {
     private void preencherPedidoForm(Pedido pedido) {
         pedidoIdentificador.setText(pedido.getIdentificador());
         pedidoStatusComboBox.setSelectedItem(pedido.getStatus());
-
-        // set pizzas table with pedido pizzas
     }
 
     /**
@@ -583,6 +581,11 @@ public class Pizzaria extends javax.swing.JFrame {
         jScrollPane5.setViewportView(pedidosTable);
 
         pizzasTable.setModel(pizzaTableModel);
+        pizzasTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                pizzasTableMouseReleased(evt);
+            }
+        });
         jScrollPane6.setViewportView(pizzasTable);
 
         jLabel11.setText("Informações da pizza");
@@ -851,7 +854,7 @@ public class Pizzaria extends javax.swing.JFrame {
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane6))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1181, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1182, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pedidosPanelLayout.setVerticalGroup(
@@ -1094,8 +1097,12 @@ public class Pizzaria extends javax.swing.JFrame {
             return;
         }
         Pedido pedido = this.pedidos.get(pedidoLinhaSelecionada);
+        this.pedido = pedido;
 
         preencherPedidoForm(pedido);
+
+        this.pizzas = pedido.getPizzas();
+        pizzaTableModel.atualizarTabela(pedido.getPizzas());
     }//GEN-LAST:event_pedidosTableMouseReleased
 
     private void atualizarPedidoButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizarPedidoButtonMouseReleased
@@ -1111,6 +1118,24 @@ public class Pizzaria extends javax.swing.JFrame {
 
         limparPedidoForm();
     }//GEN-LAST:event_atualizarPedidoButtonMouseReleased
+
+    private void pizzasTableMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pizzasTableMouseReleased
+        // preencher pizza form
+        pizzaLinhaSelecionada = pizzasTable.getSelectedRow();
+        if (pizzaLinhaSelecionada == -1) {
+            return;
+        }
+        Pizza pizza = this.pizzas.get(pizzaLinhaSelecionada);
+        formaComboBoxModel.setSelectedItem(pizza.getForma());
+        dimensaoTextField.setText(pizza.getForma().getDimensao() + "");
+
+        saboresComboBoxModel1.setSelectedItem(pizza.getSabores().get(0));
+
+        if (pizza.getSabores().size() > 1) {
+            saboresComboBoxModel2.setSelectedItem(pizza.getSabores().get(1));
+        }
+
+    }//GEN-LAST:event_pizzasTableMouseReleased
 
     /**
      * @param args the command line arguments

@@ -48,6 +48,10 @@ public class Pedido {
         this.pizzas.add(pizza);
     }
 
+    public ArrayList<Pizza> getPizzas() {
+        return pizzas;
+    }
+
     public void setStatus(StatusPedido status) {
         this.status = status;
     }

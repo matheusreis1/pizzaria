@@ -551,7 +551,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane6" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jPanel4" alignment="0" pref="1181" max="32767" attributes="0"/>
+                          <Component id="jPanel4" alignment="0" pref="1182" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -625,6 +625,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pizzasTableMouseReleased"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

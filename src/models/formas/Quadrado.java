@@ -27,6 +27,11 @@ public class Quadrado extends Forma {
         return this.lado * 2;
     }
 
+    @Override
+    public double getDimensao() {
+        return this.lado;
+    }
+
     public void setLado(double lado) throws InvalidSizeInput {
         if (lado < MINIMUM_SIZE || lado > MAXIMUM_SIZE) {
             throw new InvalidSizeInput(FormaPizza.QUADRADO.toString().toLowerCase(), MINIMUM_SIZE, MAXIMUM_SIZE);
