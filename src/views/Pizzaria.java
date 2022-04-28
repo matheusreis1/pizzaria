@@ -1248,9 +1248,7 @@ public class Pizzaria extends javax.swing.JFrame {
         pedido.setPizzas((ArrayList<Pizza>) this.pizzas);
 
         limparPizzaForm();
-        if (pedidoLinhaSelecionada == -1) { // atualiza na hora de criacao
-
-        } else { // atualiza no pedido ja criado
+        if (pedidoLinhaSelecionada != -1) {
             limparNovoPedidoForm();
         }
     }//GEN-LAST:event_atualizarPizzaButtonMouseReleased
