@@ -1306,6 +1306,7 @@ public class Pizzaria extends javax.swing.JFrame {
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             Cliente cliente = (Cliente) evt.getItem();
 
+            System.out.println("views.Pizzaria.pedidosClienteComboBoxItemStateChanged()" + cliente.getPedidos());
             pedidoTableModel.atualizarTabela(cliente.getPedidos());
             if (cliente.getPedidos() == null) {
                 this.pizzas = new ArrayList<>();

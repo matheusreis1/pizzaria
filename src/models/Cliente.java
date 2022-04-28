@@ -62,9 +62,7 @@ public class Cliente {
     }
 
     public void addPedido(Pedido pedido) {
-        if (getPedidoAtivo() == null) {
-            this.pedidos.add(pedido);
-        }
+        this.pedidos.add(pedido);
     }
 
 }
