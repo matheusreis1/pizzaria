@@ -8,6 +8,7 @@ import enums.StatusPedido;
 import errors.InvalidSizeInput;
 import errors.MaximumFlavorSize;
 import errors.NegativeValue;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -173,6 +174,7 @@ public class Pizzaria extends javax.swing.JFrame {
     }
 
     private void limparNovoPedidoForm() {
+        pedido = null;
         this.limparPizzaForm();
         this.pizzas = new ArrayList<>();
         this.pizzaTableModel.atualizarTabela(this.pizzas);
@@ -1091,6 +1093,7 @@ public class Pizzaria extends javax.swing.JFrame {
         }
 
         Cliente cliente = (Cliente) pedidosClienteComboBox.getSelectedItem();
+
         cliente.addPedido(pedido);
         pedidos.add(pedido);
         pedidoTableModel.adicionar(pedido);
@@ -1101,6 +1104,9 @@ public class Pizzaria extends javax.swing.JFrame {
     }//GEN-LAST:event_pedidoSalvarButtonMouseReleased
 
     private void pedidoAdicionarPizzaButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoAdicionarPizzaButtonMouseReleased
+        if (pizzaLinhaSelecionada != -1) {
+            return;
+        }
         if (!validarCamposPizza()) {
             return;
         }
@@ -1200,7 +1206,7 @@ public class Pizzaria extends javax.swing.JFrame {
         if (pizzaLinhaSelecionada == -1) {
             return;
         }
-        Pizza pizza = (Pizza) this.pizzaTableModel.getItens().get(pizzaLinhaSelecionada);
+        Pizza pizza = this.pizzas.get(pizzaLinhaSelecionada);
         formaComboBoxModel.setSelectedItem(pizza.getForma());
         pedidoFormaComboBox.setSelectedItem(pizza.getForma());
         dimensaoTextField.setText(pizza.getForma().getDimensao() + "");
@@ -1282,6 +1288,8 @@ public class Pizzaria extends javax.swing.JFrame {
         pedido.setPizzas((ArrayList<Pizza>) this.pizzas);
 
         limparPizzaForm();
+        limparPedidoForm();
+        pedidoTableModel.atualizarTabela(this.pedidos);
         if (pedidoLinhaSelecionada != -1) {
             limparNovoPedidoForm();
         }
@@ -1290,14 +1298,21 @@ public class Pizzaria extends javax.swing.JFrame {
     private void pedidoLimparButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoLimparButtonMouseReleased
         limparPizzaForm();
         limparNovoPedidoForm();
+        limparPedidoForm();
         pedidoTableModel.atualizarTabela(this.pedidos);
     }//GEN-LAST:event_pedidoLimparButtonMouseReleased
 
     private void pedidosClienteComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pedidosClienteComboBoxItemStateChanged
-        // cliente selecionado
-        Cliente cliente = (Cliente) evt.getItem();
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            Cliente cliente = (Cliente) evt.getItem();
 
-        pedidoTableModel.atualizarTabela(cliente.getPedidos());
+            pedidoTableModel.atualizarTabela(cliente.getPedidos());
+            if (cliente.getPedidos() == null) {
+                this.pizzas = new ArrayList<>();
+                pizzaTableModel.atualizarTabela(this.pizzas);
+            }
+
+        }
     }//GEN-LAST:event_pedidosClienteComboBoxItemStateChanged
 
     /**
