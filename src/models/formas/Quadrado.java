@@ -9,8 +9,8 @@ import errors.InvalidSizeInput;
  */
 public class Quadrado extends Forma {
 
-    private static final double MINIMUM_SIZE = 20;
-    private static final double MAXIMUM_SIZE = 60;
+    private static final double MINIMUM_SIZE = 10;
+    private static final double MAXIMUM_SIZE = 40;
     private double lado;
 
     public Quadrado() {

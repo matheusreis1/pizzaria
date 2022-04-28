@@ -290,6 +290,7 @@ public class Pizzaria extends javax.swing.JFrame {
         pedidoFormaErroText = new javax.swing.JLabel();
         pedidoSaborErroText = new javax.swing.JLabel();
         atualizarPizzaButton = new javax.swing.JButton();
+        pedidoLimparButton = new javax.swing.JToggleButton();
         pedidoPanel = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -650,6 +651,13 @@ public class Pizzaria extends javax.swing.JFrame {
             }
         });
 
+        pedidoLimparButton.setText("limpar");
+        pedidoLimparButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                pedidoLimparButtonMouseReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout pizzaPanelLayout = new javax.swing.GroupLayout(pizzaPanel);
         pizzaPanel.setLayout(pizzaPanelLayout);
         pizzaPanelLayout.setHorizontalGroup(
@@ -695,6 +703,10 @@ public class Pizzaria extends javax.swing.JFrame {
                                         .addComponent(atualizarPizzaButton)))
                                 .addGap(0, 30, Short.MAX_VALUE)))
                         .addGap(101, 101, 101))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pizzaPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pedidoLimparButton)
+                .addContainerGap())
         );
         pizzaPanelLayout.setVerticalGroup(
             pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -724,7 +736,9 @@ public class Pizzaria extends javax.swing.JFrame {
                 .addGroup(pizzaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(pedidoSaboresComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(pedidoLimparButton)
+                .addContainerGap())
         );
 
         jLabel16.setText("Alterar pedido");
@@ -748,6 +762,11 @@ public class Pizzaria extends javax.swing.JFrame {
 
         pedidosClienteComboBox.setModel(clienteComboBoxModel);
         pedidosClienteComboBox.setRenderer(new ClienteComboBoxRenderer());
+        pedidosClienteComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                pedidosClienteComboBoxItemStateChanged(evt);
+            }
+        });
 
         pedidoClienteErroText.setForeground(new java.awt.Color(255, 51, 51));
 
@@ -1071,6 +1090,8 @@ public class Pizzaria extends javax.swing.JFrame {
             return;
         }
 
+        Cliente cliente = (Cliente) pedidosClienteComboBox.getSelectedItem();
+        cliente.addPedido(pedido);
         pedidos.add(pedido);
         pedidoTableModel.adicionar(pedido);
 
@@ -1266,6 +1287,19 @@ public class Pizzaria extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_atualizarPizzaButtonMouseReleased
 
+    private void pedidoLimparButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoLimparButtonMouseReleased
+        limparPizzaForm();
+        limparNovoPedidoForm();
+        pedidoTableModel.atualizarTabela(this.pedidos);
+    }//GEN-LAST:event_pedidoLimparButtonMouseReleased
+
+    private void pedidosClienteComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pedidosClienteComboBoxItemStateChanged
+        // cliente selecionado
+        Cliente cliente = (Cliente) evt.getItem();
+
+        pedidoTableModel.atualizarTabela(cliente.getPedidos());
+    }//GEN-LAST:event_pedidosClienteComboBoxItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -1355,6 +1389,7 @@ public class Pizzaria extends javax.swing.JFrame {
     private javax.swing.JComboBox<Forma> pedidoFormaComboBox;
     private javax.swing.JLabel pedidoFormaErroText;
     private javax.swing.JTextField pedidoIdentificador;
+    private javax.swing.JToggleButton pedidoLimparButton;
     private javax.swing.JPanel pedidoPanel;
     private javax.swing.JFormattedTextField pedidoPrecoTotal;
     private javax.swing.JLabel pedidoSaborErroText;
