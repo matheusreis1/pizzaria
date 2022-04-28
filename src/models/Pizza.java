@@ -59,6 +59,10 @@ public class Pizza {
         return precoTotal;
     }
 
+    public Forma getForma() {
+        return forma;
+    }
+
     @Override
     public String toString() {
         String saboresString = "";
