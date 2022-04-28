@@ -162,8 +162,6 @@ public class Pizzaria extends javax.swing.JFrame {
 
     private void limparPizzaForm() {
         this.limparPizzaErroText();
-        this.pizzas = new ArrayList<>();
-        this.pizzaTableModel.atualizarTabela(this.pizzas);
         dimensaoTextField.setText("");
         formaComboBoxModel.atualizar(formas);
         saboresComboBoxModel1.atualizar(sabores);
@@ -175,6 +173,8 @@ public class Pizzaria extends javax.swing.JFrame {
 
     private void limparNovoPedidoForm() {
         this.limparPizzaForm();
+        this.pizzas = new ArrayList<>();
+        this.pizzaTableModel.atualizarTabela(this.pizzas);
         pedidoPrecoTotal.setText("");
         clienteComboBoxModel.atualizar(this.clientes);
         pedidosClienteComboBox.setSelectedIndex(-1);
@@ -1071,7 +1071,9 @@ public class Pizzaria extends javax.swing.JFrame {
 
         Cliente cliente = (Cliente) pedidosClienteComboBox.getSelectedItem();
 
-        pedido = new Pedido(cliente);
+        if (pedido == null) {
+            pedido = new Pedido(cliente);
+        }
 
         Pizza pizza = new Pizza();
         Forma forma = (Forma) pedidoFormaComboBox.getSelectedItem();
@@ -1121,7 +1123,7 @@ public class Pizzaria extends javax.swing.JFrame {
         pedidoPrecoTotal.setText(pedido.getPreco() + "");
 
         this.pizzas.add(pizza);
-        pizzaTableModel.adicionar(pizza);
+        pizzaTableModel.atualizarTabela(this.pizzas);
 
         // clear pizza form
         limparPizzaForm();
