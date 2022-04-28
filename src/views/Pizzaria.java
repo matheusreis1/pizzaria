@@ -1157,7 +1157,6 @@ public class Pizzaria extends javax.swing.JFrame {
     }//GEN-LAST:event_atualizarPedidoButtonMouseReleased
 
     private void pizzasTableMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pizzasTableMouseReleased
-        // preencher pizza form
         pizzaLinhaSelecionada = pizzasTable.getSelectedRow();
         if (pizzaLinhaSelecionada == -1) {
             return;
@@ -1234,6 +1233,10 @@ public class Pizzaria extends javax.swing.JFrame {
         }
         pizza.setForma(forma);
 
+        try {
+            pizza.setSabores(new ArrayList<>());
+        } catch (MaximumFlavorSize ex) {
+        }
         Sabor sabor1 = (Sabor) pedidoSaboresComboBox1.getSelectedItem();
         Sabor sabor2 = (Sabor) pedidoSaboresComboBox2.getSelectedItem();
         try {

@@ -35,9 +35,13 @@ public class Pizza {
         return sabores;
     }
 
-    private void setSabores(ArrayList<Sabor> sabores) throws MaximumFlavorSize {
-        for (Sabor sabor : sabores) {
-            this.addSabor(sabor);
+    public void setSabores(ArrayList<Sabor> sabores) throws MaximumFlavorSize {
+        if (sabores.isEmpty()) {
+            this.sabores = new ArrayList<>();
+        } else {
+            for (Sabor sabor : sabores) {
+                this.addSabor(sabor);
+            }
         }
     }
 
