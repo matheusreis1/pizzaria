@@ -190,8 +190,24 @@ public class Pizzaria extends javax.swing.JFrame {
         pedidoStatusComboBox.setSelectedItem(pedido.getStatus());
     }
 
-    private void salvarPizza() {
-
+    private void validarCamposPizza() {
+        limparPizzaErroText();
+        if (pedidosClienteComboBox.getSelectedIndex() == -1) {
+            pedidoClienteErroText.setText("O cliente é obrigatorio!");
+            return;
+        }
+        if (pedidoFormaComboBox.getSelectedIndex() == -1) {
+            pedidoFormaErroText.setText("A forma é obrigatoria!");
+            return;
+        }
+        if (dimensaoTextField.getText().isEmpty()) {
+            dimensaoErroText.setText("A dimensao é obrigatoria!");
+            return;
+        }
+        if ((pedidoSaboresComboBox1.getSelectedIndex() == -1) && (pedidoSaboresComboBox2.getSelectedIndex() == -1)) {
+            pedidoSaborErroText.setText("A pizza precisa ter no minimo 1 sabor!");
+            return;
+        }
     }
 
     /**
@@ -1049,23 +1065,7 @@ public class Pizzaria extends javax.swing.JFrame {
     }//GEN-LAST:event_pedidoSalvarButtonMouseReleased
 
     private void pedidoAdicionarPizzaButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoAdicionarPizzaButtonMouseReleased
-        limparPizzaErroText();
-        if (pedidosClienteComboBox.getSelectedIndex() == -1) {
-            pedidoClienteErroText.setText("O cliente é obrigatorio!");
-            return;
-        }
-        if (pedidoFormaComboBox.getSelectedIndex() == -1) {
-            pedidoFormaErroText.setText("A forma é obrigatoria!");
-            return;
-        }
-        if (dimensaoTextField.getText().isEmpty()) {
-            dimensaoErroText.setText("A dimensao é obrigatoria!");
-            return;
-        }
-        if ((pedidoSaboresComboBox1.getSelectedIndex() == -1) && (pedidoSaboresComboBox2.getSelectedIndex() == -1)) {
-            pedidoSaborErroText.setText("A pizza precisa ter no minimo 1 sabor!");
-            return;
-        }
+        validarCamposPizza();
 
         double dimensao = Double.parseDouble(dimensaoTextField.getText());
 
@@ -1165,6 +1165,7 @@ public class Pizzaria extends javax.swing.JFrame {
         }
         Pizza pizza = (Pizza) this.pizzaTableModel.getItens().get(pizzaLinhaSelecionada);
         formaComboBoxModel.setSelectedItem(pizza.getForma());
+        pedidoFormaComboBox.setSelectedItem(pizza.getForma());
         dimensaoTextField.setText(pizza.getForma().getDimensao() + "");
         saboresComboBoxModel1.setSelectedItem(pizza.getSabores().get(0));
 
@@ -1181,26 +1182,9 @@ public class Pizzaria extends javax.swing.JFrame {
         if (pizzaLinhaSelecionada == -1) {
             return;
         }
-        System.out.println("views.Pizzaria.atualizarPizzaButtonMouseReleased()" + this.pizzas);
         Pizza pizza = (Pizza) this.pizzaTableModel.getItens().get(pizzaLinhaSelecionada);
 
-        limparPizzaErroText();
-        if (pedidosClienteComboBox.getSelectedIndex() == -1) {
-            pedidoClienteErroText.setText("O cliente é obrigatorio!");
-            return;
-        }
-        if (pedidoFormaComboBox.getSelectedIndex() == -1) {
-            pedidoFormaErroText.setText("A forma é obrigatoria!");
-            return;
-        }
-        if (dimensaoTextField.getText().isEmpty()) {
-            dimensaoErroText.setText("A dimensao é obrigatoria!");
-            return;
-        }
-        if ((pedidoSaboresComboBox1.getSelectedIndex() == -1) && (pedidoSaboresComboBox2.getSelectedIndex() == -1)) {
-            pedidoSaborErroText.setText("A pizza precisa ter no minimo 1 sabor!");
-            return;
-        }
+        validarCamposPizza();
 
         pedido.setCliente((Cliente) pedidosClienteComboBox.getSelectedItem());
 
